@@ -1,0 +1,23 @@
+# Deny-all by default (whitelist only what ships in this repo)
+*
+.*
+
+# Repository metadata & root config
+!.gitignore
+!README.md
+!VERSION
+!LICENSE
+!CODE_OF_CONDUCT.md
+!SECURITY.md
+!CHANGELOG.md
+!CONTRIBUTING.md
+!AGENTS.md
+
+!.github/
+!.github/**
+
+!testing/
+!testing/**
+
+!run/
+!run/**

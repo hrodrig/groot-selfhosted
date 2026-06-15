@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GROOT product bug (CLI / collector)
+    url: https://github.com/hrodrig/groot/issues/new/choose
+    about: Bugs in groot collect, config schema, or releases — not operator manifests in this repo.
+  - name: Security report (operator repo)
+    url: https://github.com/hrodrig/groot-selfhosted/security/advisories/new
+    about: Report Helm/manifest/runbook vulnerabilities privately.
+  - name: Security report (GROOT product)
+    url: https://github.com/hrodrig/groot/security/advisories/new
+    about: Report binary, image, or collector vulnerabilities privately.

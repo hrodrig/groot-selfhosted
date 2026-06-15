@@ -1,0 +1,20 @@
+# Minimal operator config — edit for your cluster
+# Full reference: https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample
+
+kubeconfig: ""  # default: ~/.kube/config (or in-cluster when running as CronJob)
+
+output_dir: ./out
+file_prefix: groot-capture
+
+collection:
+  timeout: 20m
+  namespaces:
+    - kube-system
+    - default
+  include_node_logs: false
+  redact_secrets: true
+
+# notify:
+#   on_failure:
+#     enabled: true
+#     min_failed_jobs: 1
