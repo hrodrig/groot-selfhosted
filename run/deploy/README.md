@@ -6,7 +6,7 @@ Scheduled **`groot collect`** inside Kubernetes using the published image **`ghc
 
 | Method | Path | Best for |
 |--------|------|----------|
-| **Helm repo** (GitHub Pages) | `helm repo add groot https://hrodrig.github.io/groot` | Production installs without cloning |
+| **Helm repo** (GitHub Pages) | `helm repo add groot https://hrodrig.github.io/groot-selfhosted` | Production installs without cloning |
 | **Helm (clone)** | [`helm/groot/`](helm/groot/) | GitOps fork, air-gapped copy |
 | **Flat YAML** | [`k8s/cronjob.yaml`](k8s/cronjob.yaml) | No Helm; copy/edit manifests |
 
@@ -15,7 +15,7 @@ Scheduled **`groot collect`** inside Kubernetes using the published image **`ghc
 ## Helm quick start (GitHub Pages)
 
 ```bash
-helm repo add groot https://hrodrig.github.io/groot
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \

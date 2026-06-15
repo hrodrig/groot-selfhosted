@@ -16,7 +16,7 @@ Maintained in [groot-selfhosted](https://github.com/hrodrig/groot-selfhosted). P
 Once **`index.yaml`** is published (see [CONTRIBUTING.md](../../../../CONTRIBUTING.md)):
 
 ```bash
-helm repo add groot https://hrodrig.github.io/groot
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \

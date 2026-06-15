@@ -1,6 +1,6 @@
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.1.2-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.1.3-blue)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
@@ -26,12 +26,12 @@ Start at **[run/README.md](run/README.md)** for the full index.
 
 ## Quick start (Helm)
 
-**Naming:** this repository is **`groot-selfhosted`**. The chart lives under **`run/deploy/helm/groot/`** — chart name **`groot`** (see **`Chart.yaml`**). After the first chart release, **`index.yaml`** and **`groot-<chart-version>.tgz`** are on [GitHub Pages](https://hrodrig.github.io/groot/index.yaml) — see [CONTRIBUTING.md](CONTRIBUTING.md).
+**Naming:** this repository is **`groot-selfhosted`**. The chart lives under **`run/deploy/helm/groot/`** — chart name **`groot`** (see **`Chart.yaml`**). After the first chart release, **`index.yaml`** and **`groot-<chart-version>.tgz`** are on [GitHub Pages](https://hrodrig.github.io/groot-selfhosted/index.yaml) — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Install from the Helm repo (recommended after first chart publish):**
 
 ```bash
-helm repo add groot https://hrodrig.github.io/groot
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \
