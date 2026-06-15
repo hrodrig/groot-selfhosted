@@ -1,0 +1,8 @@
+[Unit]
+Description=Upload groot archives to OneDrive via rclone
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=groot-inbox
+ExecStart=/usr/bin/rclone move /home/groot-inbox/inbox/ onedrive:groot-archives/ --include "*.tar.gz" --delete-empty-src-dirs -v

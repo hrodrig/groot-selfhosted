@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch groot-inbox for new archives
+
+[Path]
+PathExistsGlob=/home/groot-inbox/inbox/*.tar.gz
+
+[Install]
+WantedBy=multi-user.target

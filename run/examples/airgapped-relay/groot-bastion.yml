@@ -1,0 +1,44 @@
+# GROOT config for airgapped bastion → SFTP relay topology.
+# Copy to /etc/groot/groot.yml or pass with --config.
+#
+# Secrets via env — never in YAML:
+#   GROOT_UPLOAD_SFTP_IDENTITY_FILE=/home/groot/.ssh/id_ed25519_groot
+#   KUBECONFIG=/home/groot/.kube/config
+
+kubeconfig: ""
+output_dir: "./out"
+file_prefix: "groot-capture"
+
+collection:
+  timeout: 20m
+  worker_concurrency: 6
+  namespaces:
+    - kube-system
+    - default
+  include_pod_logs: true
+  include_previous_logs: true
+  pod_log_tail_lines: 1500
+  include_node_details: true
+  include_node_logs: true
+  node_log_tail_lines: 5000
+  include_pod_metrics: true
+
+# Optional: alert if collect fails (Slack, email, etc.)
+# notify:
+#   on_failure:
+#     enabled: true
+#   slack:
+#     enabled: true
+#     webhook_url: "https://hooks.slack.com/services/..."
+
+upload:
+  enabled: true
+  continue_on_error: true
+  timeout: 10m
+  sftp:
+    enabled: true
+    host: "ipA.example.com"
+    port: 22
+    user: "groot-inbox"
+    remote_dir: "inbox"
+    known_hosts_file: "/etc/groot/known_hosts"
