@@ -52,13 +52,18 @@ Coordinate **image pin** with a published **groot** release when possible (e.g. 
 
 ## Helm chart publish (GitHub Pages)
 
-The install path **`helm repo add groot https://hrodrig.github.io/groot-selfhosted`** expects **`index.yaml`** and packaged **`.tgz`** files on the **`gh-pages`** branch. Static **`index.html`** and **`.nojekyll`** are copied from **`run/deploy/helm/helm-repo-landing/`** on each **Release Charts** run (same pattern as **pgwd-selfhosted**).
+The install path **`helm repo add groot https://hrodrig.github.io/groot`** expects **`index.yaml`** and packaged **`.tgz`** files on the **`gh-pages`** branch of the **product** repo [**hrodrig/groot**](https://github.com/hrodrig/groot) — not on **`groot-selfhosted`**. Static **`index.html`** and **`.nojekyll`** are copied from **`run/deploy/helm/helm-repo-landing/`** on each publish (short URL like the product site).
 
-- **Automation:** [**.github/workflows/release-charts.yml**](.github/workflows/release-charts.yml) runs **[helm/chart-releaser-action](https://github.com/helm/chart-releaser-action)** when you **push an annotated tag `v*`** on **`main`**. It packages the chart, creates a GitHub Release (artifact `.tgz`), and updates **`gh-pages`** with **`index.yaml`**. **`workflow_dispatch`** is available for a manual re-run. Pre-merge validation: [**helm-lint.yml**](.github/workflows/helm-lint.yml).
-- **One-time setup:** Repository **Settings → Pages → Build and deployment → Source:** branch **`gh-pages`**, folder **`/` (root)**.
-- **Release checklist (chart publish):** When the **chart** changes, bump **`Chart.yaml` `version:`** (semver) and **`appVersion`** if the GROOT image pin changes. Merge to **`main`**, push **`git tag -a v…`** and **`git push origin v…`**. Confirm **Release Charts** is green; then **`helm repo update`** on a test machine. **Repo `VERSION`** and Git tag **`v*`** snapshot the **whole repository** — they need not equal **`Chart.yaml` `version:`** if this release did not touch the chart.
-- **“No chart changes detected”:** Normal when you tag **`v*`** for a **docs-only** release with no diffs under **`run/deploy/helm/`**. chart-releaser only updates **`gh-pages`** when the chart changed. To ship a new **`.tgz`**, edit the chart, bump **`Chart.yaml` `version:`**, merge, and tag again.
-- **First publish (`invalid reference: origin/gh-pages`):** The workflow bootstraps an orphan **`gh-pages`** branch when missing.
+- **Chart sources:** this repo (**`run/deploy/helm/groot/`**).
+- **Publish target:** [**hrodrig/groot**](https://github.com/hrodrig/groot) **`gh-pages`** via [**.github/workflows/publish-helm-charts.yml**](https://github.com/hrodrig/groot/blob/main/.github/workflows/publish-helm-charts.yml).
+- **Trigger:** [**.github/workflows/release-charts.yml**](.github/workflows/release-charts.yml) here runs on **push tag `v*`** and **`repository_dispatch`**es **`publish-helm-charts`** to **`hrodrig/groot`** with the tag ref. **`workflow_dispatch`** on either repo can re-run a publish.
+- **One-time setup:**
+  1. **`hrodrig/groot` → Settings → Pages → Source:** branch **`gh-pages`**, folder **`/` (root)**.
+  2. **`groot-selfhosted` → Settings → Secrets → Actions:** **`GROOT_PAGES_TOKEN`** — PAT (classic **`repo`** or fine-grained **contents: write** on **`hrodrig/groot`**) so **`repository_dispatch`** can reach the product repo.
+- **Pre-merge validation:** [**helm-lint.yml**](.github/workflows/helm-lint.yml).
+- **Release checklist (chart publish):** When the **chart** changes, bump **`Chart.yaml` `version:`** (semver) and **`appVersion`** if the GROOT image pin changes. Merge to **`main`**, push **`git tag -a v…`** and **`git push origin v…`**. Confirm **Release Charts** (selfhosted) and **Publish Helm charts** (groot) are green; then **`helm repo update`** on a test machine. **Repo `VERSION`** and Git tag **`v*`** snapshot the **whole repository** — they need not equal **`Chart.yaml` `version:`** if this release did not touch the chart.
+- **“No chart changes detected”:** Normal when chart-releaser sees no diff under **`run/deploy/helm/`**. To ship a new **`.tgz`**, edit the chart, bump **`Chart.yaml` `version:`**, merge, and tag again.
+- **First publish (`invalid reference: origin/gh-pages`):** The groot workflow bootstraps an orphan **`gh-pages`** branch when missing.
 
 ## Security
 

@@ -7,13 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-06-15
+
+### Changed
+
+- **Helm repo URL:** charts and **`index.yaml`** publish to **`https://hrodrig.github.io/groot`** (product repo **`gh-pages`**) instead of **`groot-selfhosted`** Pages — same short URL pattern as the product name.
+- **Release Charts workflow:** dispatches **`publish-helm-charts`** on **`hrodrig/groot`** (requires secret **`GROOT_PAGES_TOKEN`**).
+- **Helm chart `version:`** → **0.1.2** (republish under new repo URL).
+
 ## [0.1.1] - 2026-06-15
 
 ### Added
 
 - **Helm chart GitHub Pages repo:** [`.github/workflows/release-charts.yml`](.github/workflows/release-charts.yml) (chart-releaser + **`gh-pages`** **`index.yaml`**).
 - **`run/deploy/helm/helm-repo-landing/`** — browser landing page + **`.nojekyll`** for Pages.
-- **Install from Helm repo:** `helm repo add groot https://hrodrig.github.io/groot-selfhosted` (documented in README and deploy runbooks).
+- **Install from Helm repo:** `helm repo add groot https://hrodrig.github.io/groot` (documented in README and deploy runbooks).
 
 ### Changed
 

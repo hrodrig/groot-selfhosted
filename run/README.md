@@ -16,7 +16,7 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 | You have… | Start here |
 |-----------|------------|
 | kubeconfig on a laptop / bastion | [docker/README.md](docker/README.md) |
-| Kubernetes + Helm 3 | [deploy/README.md](deploy/README.md) — **`helm repo add groot https://hrodrig.github.io/groot-selfhosted`** |
+| Kubernetes + Helm 3 | [deploy/README.md](deploy/README.md) — **`helm repo add groot https://hrodrig.github.io/groot`** |
 | Kubernetes, no Helm | [deploy/k8s/cronjob.yaml](deploy/k8s/cronjob.yaml) |
 | Linux host + cron only | [standalone/README.md](standalone/README.md) |
 | Need a starter config | [examples/groot-minimal.yml](examples/groot-minimal.yml) |
