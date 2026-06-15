@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Airgapped relay playbook**: `run/examples/airgapped-relay/` — bastion → SFTP → rclone → OneDrive topology with systemd watcher and SSH hardening.
+
+### Changed
+
+- Upstream pin bumped to **v0.7.0** (groot SFTP upload).
+
 ## [0.1.3] - 2026-06-15
 
 ### Changed
