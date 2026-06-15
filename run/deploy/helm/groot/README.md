@@ -11,7 +11,22 @@ Maintained in [groot-selfhosted](https://github.com/hrodrig/groot-selfhosted). P
 - Read-only **ClusterRole** (included) or namespace-scoped RBAC if you customize templates
 - Optional: PersistentVolume for `/out` archives (enabled by default)
 
-## Install
+## Helm repo (GitHub Pages)
+
+Once **`index.yaml`** is published (see [CONTRIBUTING.md](../../../../CONTRIBUTING.md)):
+
+```bash
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
+helm repo update
+helm search repo groot -l
+helm upgrade --install groot groot/groot \
+  --namespace groot --create-namespace \
+  --set image.tag=0.6.1
+```
+
+If **`helm repo add`** fails, use **From this repository** below until the first chart release completes.
+
+## From this repository (clone)
 
 From a clone of **groot-selfhosted** (repo root):
 
@@ -26,7 +41,7 @@ helm upgrade --install groot ./run/deploy/helm/groot \
 ### Custom schedule and smaller PVC
 
 ```bash
-helm upgrade --install groot ./run/deploy/helm/groot \
+helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set schedule="0 2 * * *" \
   --set persistence.size=20Gi \
@@ -36,7 +51,7 @@ helm upgrade --install groot ./run/deploy/helm/groot \
 ### Embed config from file
 
 ```bash
-helm upgrade --install groot ./run/deploy/helm/groot \
+helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set-file config.grootYml=./prod-groot.yml \
   --set image.tag=0.6.1
@@ -64,7 +79,7 @@ Use Kubernetes Secrets for passwords (env in CronJob) rather than plain text in 
 ### Disable PVC (emptyDir — archives lost when pod exits)
 
 ```bash
-helm upgrade --install groot ./run/deploy/helm/groot \
+helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set persistence.enabled=false \
   --set image.tag=0.6.1
@@ -97,4 +112,4 @@ Collected archives may contain secrets. Enable `collection.redact_secrets` in co
 
 ## Flat manifests (no Helm)
 
-See [`k8s/cronjob.yaml`](../k8s/cronjob.yaml) and [`../README.md`](../README.md).
+See [`k8s/cronjob.yaml`](../../k8s/cronjob.yaml) and [`../README.md`](../README.md).

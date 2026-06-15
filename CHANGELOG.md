@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-15
+
+### Added
+
+- **Helm chart GitHub Pages repo:** [`.github/workflows/release-charts.yml`](.github/workflows/release-charts.yml) (chart-releaser + **`gh-pages`** **`index.yaml`**).
+- **`run/deploy/helm/helm-repo-landing/`** — browser landing page + **`.nojekyll`** for Pages.
+- **Install from Helm repo:** `helm repo add groot https://hrodrig.github.io/groot-selfhosted` (documented in README and deploy runbooks).
+
+### Changed
+
+- **Helm chart `version:`** → **0.1.1** (first packaged chart release for chart-releaser).
+
 ## [0.1.0] - 2026-06-15
 
 ### Added
@@ -24,5 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.0

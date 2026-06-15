@@ -1,6 +1,6 @@
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.1.1-blue)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
@@ -26,9 +26,26 @@ Start at **[run/README.md](run/README.md)** for the full index.
 
 ## Quick start (Helm)
 
-From a clone of this repository:
+**Naming:** this repository is **`groot-selfhosted`**. The chart lives under **`run/deploy/helm/groot/`** — chart name **`groot`** (see **`Chart.yaml`**). After the first chart release, **`index.yaml`** and **`groot-<chart-version>.tgz`** are on [GitHub Pages](https://hrodrig.github.io/groot-selfhosted/index.yaml) — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+**Install from the Helm repo (recommended after first chart publish):**
 
 ```bash
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
+helm repo update
+helm search repo groot -l
+helm upgrade --install groot groot/groot \
+  --namespace groot --create-namespace \
+  --set image.tag=0.6.1
+```
+
+Use **`--version`** from **`helm search`** once the index is live. If **`helm repo add`** fails, the chart may not be published yet — use the clone path below.
+
+**Install from a clone (no Helm repo required):**
+
+```bash
+git clone https://github.com/hrodrig/groot-selfhosted.git
+cd groot-selfhosted
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
   --set image.tag=0.6.1

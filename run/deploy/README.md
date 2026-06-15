@@ -2,32 +2,45 @@
 
 Scheduled **`groot collect`** inside Kubernetes using the published image **`ghcr.io/hrodrig/groot`**.
 
-Clone this repo and run Helm from the paths below, or fork and adjust for GitOps.
-
 ## Choose an approach
 
 | Method | Path | Best for |
 |--------|------|----------|
-| **Helm** | [`helm/groot/`](helm/groot/) | Custom values, upgrades, optional PVC |
+| **Helm repo** (GitHub Pages) | `helm repo add groot https://hrodrig.github.io/groot-selfhosted` | Production installs without cloning |
+| **Helm (clone)** | [`helm/groot/`](helm/groot/) | GitOps fork, air-gapped copy |
 | **Flat YAML** | [`k8s/cronjob.yaml`](k8s/cronjob.yaml) | No Helm; copy/edit manifests |
 
-## Helm quick start
+**Helm repo:** once [**Release Charts**](https://github.com/hrodrig/groot-selfhosted/blob/main/.github/workflows/release-charts.yml) has published **`index.yaml`**, install with **`groot/groot`** (repo/chart). Until then, use **From this repository** below.
+
+## Helm quick start (GitHub Pages)
+
+```bash
+helm repo add groot https://hrodrig.github.io/groot-selfhosted
+helm repo update
+helm upgrade --install groot groot/groot \
+  --namespace groot --create-namespace \
+  --set image.tag=0.6.1
+```
+
+Pin chart semver when needed: **`helm search repo groot -l`** then **`--version <chart-version>`**.
+
+Embed your config:
+
+```bash
+helm upgrade --install groot groot/groot \
+  --namespace groot --create-namespace \
+  --set-file config.grootYml=./groot.yml \
+  --set image.tag=0.6.1 \
+  --set schedule="0 2 * * *"
+```
+
+## From this repository (clone)
 
 ```bash
 # Default: CronJob every 6h, PVC for /out, read-only ClusterRole
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
   --set image.tag=0.6.1
-```
-
-Use your own `groot.yml`:
-
-```bash
-helm upgrade --install groot ./run/deploy/helm/groot \
-  --namespace groot --create-namespace \
-  --set-file config.grootYml=./groot.yml \
-  --set image.tag=0.6.1 \
-  --set schedule="0 2 * * *"
 ```
 
 Example `groot.yml` for in-cluster (notify + redaction):

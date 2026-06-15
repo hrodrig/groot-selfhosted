@@ -50,6 +50,16 @@ Selfhosted versions (**`VERSION`**, badge in README) are **independent** from **
 
 Coordinate **image pin** with a published **groot** release when possible (e.g. chart `appVersion` matches `ghcr.io/hrodrig/groot` tag).
 
+## Helm chart publish (GitHub Pages)
+
+The install path **`helm repo add groot https://hrodrig.github.io/groot-selfhosted`** expects **`index.yaml`** and packaged **`.tgz`** files on the **`gh-pages`** branch. Static **`index.html`** and **`.nojekyll`** are copied from **`run/deploy/helm/helm-repo-landing/`** on each **Release Charts** run (same pattern as **pgwd-selfhosted**).
+
+- **Automation:** [**.github/workflows/release-charts.yml**](.github/workflows/release-charts.yml) runs **[helm/chart-releaser-action](https://github.com/helm/chart-releaser-action)** when you **push an annotated tag `v*`** on **`main`**. It packages the chart, creates a GitHub Release (artifact `.tgz`), and updates **`gh-pages`** with **`index.yaml`**. **`workflow_dispatch`** is available for a manual re-run. Pre-merge validation: [**helm-lint.yml**](.github/workflows/helm-lint.yml).
+- **One-time setup:** Repository **Settings → Pages → Build and deployment → Source:** branch **`gh-pages`**, folder **`/` (root)**.
+- **Release checklist (chart publish):** When the **chart** changes, bump **`Chart.yaml` `version:`** (semver) and **`appVersion`** if the GROOT image pin changes. Merge to **`main`**, push **`git tag -a v…`** and **`git push origin v…`**. Confirm **Release Charts** is green; then **`helm repo update`** on a test machine. **Repo `VERSION`** and Git tag **`v*`** snapshot the **whole repository** — they need not equal **`Chart.yaml` `version:`** if this release did not touch the chart.
+- **“No chart changes detected”:** Normal when you tag **`v*`** for a **docs-only** release with no diffs under **`run/deploy/helm/`**. chart-releaser only updates **`gh-pages`** when the chart changed. To ship a new **`.tgz`**, edit the chart, bump **`Chart.yaml` `version:`**, merge, and tag again.
+- **First publish (`invalid reference: origin/gh-pages`):** The workflow bootstraps an orphan **`gh-pages`** branch when missing.
+
 ## Security
 
 For vulnerabilities in the **GROOT binary or collector**, use **[groot SECURITY.md](https://github.com/hrodrig/groot/blob/main/SECURITY.md)** — do not disclose product security issues only in this repo.
