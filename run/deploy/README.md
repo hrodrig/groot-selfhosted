@@ -8,7 +8,8 @@ Scheduled **`groot collect`** inside Kubernetes using the published image **`ghc
 |--------|------|----------|
 | **Helm repo** (GitHub Pages) | `helm repo add groot https://hrodrig.github.io/groot-selfhosted` | Production installs without cloning |
 | **Helm (clone)** | [`helm/groot/`](helm/groot/) | GitOps fork, air-gapped copy |
-| **Flat YAML** | [`k8s/cronjob.yaml`](k8s/cronjob.yaml) | No Helm; copy/edit manifests |
+| **On-demand Deployment** | [`k8s/ondemand-deployment.yaml`](k8s/ondemand-deployment.yaml) | Config in-cluster; `kubectl exec` to collect when you want |
+| **Flat CronJob YAML** | [`k8s/cronjob.yaml`](k8s/cronjob.yaml) | Scheduled collection without Helm |
 
 **Helm repo:** once [**Release Charts**](https://github.com/hrodrig/groot-selfhosted/blob/main/.github/workflows/release-charts.yml) has published **`index.yaml`**, install with **`groot/groot`** (repo/chart). Until then, use **From this repository** below.
 
@@ -68,6 +69,21 @@ notify:
 Store webhook URLs and SMTP passwords in a **Secret**, not in git. Mount or inject via `config.grootYml` from CI/CD.
 
 ## Flat manifests
+
+See **[k8s/README.md](k8s/README.md)** for the full comparison.
+
+### On-demand (no schedule)
+
+```bash
+kubectl apply -f run/deploy/k8s/ondemand-deployment.yaml
+kubectl -n groot edit configmap groot-config   # config stays in the cluster
+kubectl -n groot exec -it deploy/groot-ondemand -- \
+  groot collect --config /config/groot.yml
+```
+
+Long-lived pod in namespace `groot`; archives on PVC `groot-out` at `/out`.
+
+### Scheduled CronJob
 
 ```bash
 # Review and edit run/deploy/k8s/cronjob.yaml (image tag, ConfigMap, schedule)

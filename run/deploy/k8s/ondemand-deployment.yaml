@@ -1,0 +1,189 @@
+# On-demand in-cluster GROOT — no CronJob.
+#
+# A long-lived pod in namespace `groot`. Run collection when you choose:
+#   kubectl -n groot exec -it deploy/groot-ondemand -- \
+#     groot collect --config /config/groot.yml
+#
+# Edit config in the cluster (not on your laptop):
+#   kubectl -n groot edit configmap groot-config
+#
+# Pin the CLI version fetched at pod start (initContainer needs outbound HTTPS
+# to GitHub Releases unless you replace the init step for air-gapped sites).
+#
+# Apply:
+#   kubectl apply -f run/deploy/k8s/ondemand-deployment.yaml
+#
+# Remove (PVC is kept by default):
+#   kubectl delete -f run/deploy/k8s/ondemand-deployment.yaml
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: groot
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: groot
+  namespace: groot
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: groot-collector
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log", "events", "nodes", "namespaces", "services", "configmaps", "persistentvolumeclaims"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets", "statefulsets", "daemonsets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["batch"]
+    resources: ["jobs", "cronjobs"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["pods", "nodes"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: groot-collector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: groot-collector
+subjects:
+  - kind: ServiceAccount
+    name: groot
+    namespace: groot
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: groot-config
+  namespace: groot
+data:
+  groot.yml: |
+    output_dir: /out
+    file_prefix: groot-capture
+    # cluster_name: "my-k8s"   # optional; auto-resolved in-cluster when omitted
+    collection:
+      timeout: 20m
+      worker_concurrency: 4
+      namespaces:
+        - kube-system
+        - default
+      include_pod_logs: true
+      include_node_details: true
+      include_node_logs: false
+      include_pod_metrics: true
+    notify:
+      on_failure:
+        enabled: false
+      retry:
+        max_attempts: 3
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: groot-out
+  namespace: groot
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groot-ondemand
+  namespace: groot
+  labels:
+    app.kubernetes.io/name: groot
+    app.kubernetes.io/component: ondemand
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: groot
+      app.kubernetes.io/component: ondemand
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: groot
+        app.kubernetes.io/component: ondemand
+    spec:
+      serviceAccountName: groot
+      securityContext:
+        fsGroup: 65532
+      initContainers:
+        - name: install-groot
+          image: curlimages/curl:8.5.0
+          env:
+            - name: GROOT_VERSION
+              value: "0.7.0"
+          command:
+            - sh
+            - -ec
+            - |
+              case "$(uname -m)" in
+                x86_64) ARCH=amd64 ;;
+                aarch64|arm64) ARCH=arm64 ;;
+                *) echo "unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+              esac
+              URL="https://github.com/hrodrig/groot/releases/download/v${GROOT_VERSION}/groot_v${GROOT_VERSION}_linux_${ARCH}.tar.gz"
+              echo "fetching ${URL}"
+              curl -fsSL "$URL" | tar xz -C /opt groot
+              chmod 755 /opt/groot
+              chown 65532:65532 /opt/groot
+          volumeMounts:
+            - name: groot-bin
+              mountPath: /opt
+          securityContext:
+            runAsUser: 0
+      containers:
+        - name: shell
+          image: busybox:1.36
+          command: ["sleep", "infinity"]
+          env:
+            - name: PATH
+              value: /opt:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+          volumeMounts:
+            - name: groot-bin
+              mountPath: /opt
+              readOnly: true
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: out
+              mountPath: /out
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: groot-bin
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: groot-config
+        - name: out
+          persistentVolumeClaim:
+            claimName: groot-out

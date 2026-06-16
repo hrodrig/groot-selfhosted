@@ -1,6 +1,6 @@
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.1.3-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.2.1-blue)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
@@ -18,7 +18,8 @@ GROOT is a **read-only Kubernetes log collector**. This repository holds **opera
 |------|------|------|
 | **Docker / Podman** (bastion) | [run/docker/README.md](run/docker/README.md) | Laptop or jump host with kubeconfig |
 | **Helm CronJob** (in-cluster) | [run/deploy/README.md](run/deploy/README.md) | Scheduled collection inside the cluster |
-| **Flat CronJob YAML** | [run/deploy/k8s/cronjob.yaml](run/deploy/k8s/cronjob.yaml) | No Helm; copy/edit manifests |
+| **On-demand Deployment** | [run/deploy/k8s/ondemand-deployment.yaml](run/deploy/k8s/ondemand-deployment.yaml) | Pod in `groot` namespace; `kubectl exec` to collect |
+| **Flat CronJob YAML** | [run/deploy/k8s/cronjob.yaml](run/deploy/k8s/cronjob.yaml) | Scheduled collection without Helm |
 | **cron / systemd** (standalone binary) | [run/standalone/README.md](run/standalone/README.md) | Host scheduler + Releases binary |
 | **Example configs** | [run/examples/](run/examples/) | Minimal operator YAML |
 

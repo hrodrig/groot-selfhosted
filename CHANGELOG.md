@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-06-16
+
+### Added
+
+- **On-demand in-cluster Deployment** (`run/deploy/k8s/ondemand-deployment.yaml`): long-lived pod in namespace `groot` for `kubectl exec groot collect` (no CronJob). ConfigMap + PVC + RBAC included; `k8s/README.md` documents CronJob vs on-demand.
+
+## [0.2.0] - 2026-06-16
+
 ### Added
 
 - **Airgapped relay playbook**: `run/examples/airgapped-relay/` — bastion → SFTP → rclone → OneDrive topology with systemd watcher and SSH hardening.

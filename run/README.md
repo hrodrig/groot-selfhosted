@@ -7,7 +7,7 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 | Directory | Purpose |
 |-----------|---------|
 | [docker/](docker/README.md) | Run the published image on a bastion with kubeconfig + output volume |
-| [deploy/](deploy/README.md) | In-cluster **Helm chart** and flat **CronJob** manifests |
+| [deploy/](deploy/README.md) | In-cluster **Helm chart** and flat manifests (on-demand Deployment or CronJob) |
 | [standalone/](standalone/README.md) | **cron** and **systemd** one-shot using the Releases binary |
 | [examples/](examples/README.md) | Minimal operator `groot.yml`; full schema → upstream sample |
 
@@ -17,7 +17,8 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 |-----------|------------|
 | kubeconfig on a laptop / bastion | [docker/README.md](docker/README.md) |
 | Kubernetes + Helm 3 | [deploy/README.md](deploy/README.md) — **`helm repo add groot https://hrodrig.github.io/groot-selfhosted`** |
-| Kubernetes, no Helm | [deploy/k8s/cronjob.yaml](deploy/k8s/cronjob.yaml) |
+| Kubernetes, collect **on demand** (no CronJob) | [deploy/k8s/ondemand-deployment.yaml](deploy/k8s/ondemand-deployment.yaml) |
+| Kubernetes, **scheduled** collection, no Helm | [deploy/k8s/cronjob.yaml](deploy/k8s/cronjob.yaml) |
 | Linux host + cron only | [standalone/README.md](standalone/README.md) |
 | Need a starter config | [examples/groot-minimal.yml](examples/groot-minimal.yml) |
 
