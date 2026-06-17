@@ -21,7 +21,7 @@ helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 If **`helm repo add`** fails, use **From this repository** below until the first chart release completes.
@@ -33,7 +33,7 @@ From a clone of **groot-selfhosted** (repo root):
 ```bash
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 ## Examples
@@ -45,7 +45,7 @@ helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set schedule="0 2 * * *" \
   --set persistence.size=20Gi \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 ### Embed config from file
@@ -54,7 +54,7 @@ helm upgrade --install groot groot/groot \
 helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set-file config.grootYml=./prod-groot.yml \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 Example **`prod-groot.yml`** snippet:
@@ -82,7 +82,7 @@ Use Kubernetes Secrets for passwords (env in CronJob) rather than plain text in 
 helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set persistence.enabled=false \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 ## Configuration reference
@@ -91,7 +91,7 @@ helm upgrade --install groot groot/groot \
 |-------|---------|---------|
 | `schedule` | `0 */6 * * *` | Cron expression |
 | `image.repository` | `ghcr.io/hrodrig/groot` | Container image |
-| `image.tag` | Chart `appVersion` | Image tag (set to release semver, e.g. `0.7.2`) |
+| `image.tag` | Chart `appVersion` | Image tag (set to release semver, e.g. `0.8.0`) |
 | `config.grootYml` | embedded minimal config | Full `groot.yml` in ConfigMap |
 | `persistence.enabled` | `true` | PVC for `/out` |
 | `persistence.size` | `10Gi` | PVC size |

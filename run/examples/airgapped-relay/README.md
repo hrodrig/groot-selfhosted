@@ -16,7 +16,7 @@ End-to-end operator playbook for environments where the Kubernetes cluster has *
 
 | Component | Requirement |
 |-----------|-------------|
-| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v0.7.2), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
+| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v0.8.0), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
 | **Relay (ipA)** | Linux with internet access, `rclone` installed, SSH server, dedicated user `groot-inbox` |
 | **OneDrive** | rclone remote configured on relay (`rclone config`) |
 
@@ -67,14 +67,14 @@ Whenever a `.tar.gz` lands in `~/inbox/`, the service fires `rclone move` to `on
 
 ## 2. Bastion setup
 
-### 2.1 Install groot (≥ v0.7.2)
+### 2.1 Install groot (≥ v0.8.0)
 
 ```bash
 # macOS
 brew install hrodrig/groot/groot
 
 # Linux (deb)
-curl -sL https://github.com/hrodrig/groot/releases/download/v0.7.2/groot_v0.7.2_linux_amd64.deb -o /tmp/groot.deb
+curl -sL https://github.com/hrodrig/groot/releases/download/v0.8.0/groot_v0.8.0_linux_amd64.deb -o /tmp/groot.deb
 sudo dpkg -i /tmp/groot.deb
 ```
 

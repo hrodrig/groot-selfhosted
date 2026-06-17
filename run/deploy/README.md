@@ -20,7 +20,7 @@ helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 Pin chart semver when needed: **`helm search repo groot -l`** then **`--version <chart-version>`**.
@@ -31,7 +31,7 @@ Embed your config:
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
   --set-file config.grootYml=./groot.yml \
-  --set image.tag=0.7.2 \
+  --set image.tag=0.8.0 \
   --set schedule="0 2 * * *"
 ```
 
@@ -41,7 +41,7 @@ helm upgrade --install groot groot/groot \
 # Default: CronJob every 6h, PVC for /out, read-only ClusterRole
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.7.2
+  --set image.tag=0.8.0
 ```
 
 Example `groot.yml` for in-cluster (notify + redaction):

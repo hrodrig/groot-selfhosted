@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-06-17
+
+### Changed
+
+- Upstream pin bumped to **v0.8.0** (workload resource RCA extras). Helm chart **`version:`** **0.1.5**, **`appVersion`** **0.8.0**.
+
 ## [0.2.2] - 2026-06-17
 
 ### Changed
@@ -74,6 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.2...v0.2.3
 [0.1.1]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.0
