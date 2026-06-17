@@ -1,6 +1,6 @@
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.2.1-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.2.2-blue)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
@@ -10,7 +10,7 @@
 
 GROOT is a **read-only Kubernetes log collector**. This repository holds **operator** material only: Helm chart, flat manifests, Docker/Podman runbooks, and cron/systemd wrappers. For install channels (deb, rpm, Homebrew, `go install`), see the [groot README](https://github.com/hrodrig/groot/blob/main/README.md).
 
-**Upstream pin:** `ghcr.io/hrodrig/groot:0.6.1` · [SPEC](https://github.com/hrodrig/groot/blob/main/docs/SPECIFICATIONS.md) · [sample config](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)
+**Upstream pin:** `ghcr.io/hrodrig/groot:0.7.2` · [SPEC](https://github.com/hrodrig/groot/blob/main/docs/SPECIFICATIONS.md) · [sample config](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)
 
 ## Where to run GROOT
 
@@ -37,7 +37,7 @@ helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.6.1
+  --set image.tag=0.7.2
 ```
 
 Use **`--version`** from **`helm search`** once the index is live. If **`helm repo add`** fails, the chart may not be published yet — use the clone path below.
@@ -49,7 +49,7 @@ git clone https://github.com/hrodrig/groot-selfhosted.git
 cd groot-selfhosted
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=0.6.1
+  --set image.tag=0.7.2
 ```
 
 See [run/deploy/README.md](run/deploy/README.md) for custom config, PVC, and RBAC notes.
