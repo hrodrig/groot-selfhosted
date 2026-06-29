@@ -6,12 +6,28 @@ Install the binary from [GitHub Releases](https://github.com/hrodrig/groot/relea
 
 Copy a config (minimal example: [../examples/groot-minimal.yml](../examples/groot-minimal.yml); full schema: [upstream sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)).
 
+## Preflight (v0.9.x)
+
+Before scheduling cron or systemd, run **`groot validate`** against your config and kubeconfig:
+
+```bash
+groot validate --config /etc/groot/groot.yml
+```
+
+Checks config load, API connectivity, RBAC (`list pods`, `get pods/log`, etc.), and free disk on `output_dir`. Exit **0** on pass (warnings allowed); **1** config/RBAC/disk; **2** API failure. See [groot SPEC §12](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md).
+
+After a collect, verify an archive offline:
+
+```bash
+groot inspect /var/lib/groot/out/groot-capture-*.tar.gz
+```
+
 ## cron (every 6 hours)
 
 ```cron
 SHELL=/bin/bash
 PATH=/usr/local/bin:/usr/bin:/bin
-0 */6 * * * groot collect --config /etc/groot/groot.yml >> /var/log/groot-collect.log 2>&1
+0 */6 * * * groot collect --config /etc/groot/groot.yml >> /var/log/groot-collect.log 2>&1 || logger -t groot "collect failed with exit $?"
 ```
 
 After `.deb` install, place config at `/etc/groot/groot.yml` (from `groot.yml.sample`) and edit for your cluster.

@@ -1,5 +1,5 @@
 # Default values for the GROOT Helm chart.
-# See run/deploy/helm/groot/README.md and upstream docs/SPECIFICATIONS.md.
+# See run/deploy/helm/groot/README.md and upstream SPECIFICATIONS.md.
 
 image:
   repository: ghcr.io/hrodrig/groot

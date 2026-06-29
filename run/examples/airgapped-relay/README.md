@@ -16,7 +16,7 @@ End-to-end operator playbook for environments where the Kubernetes cluster has *
 
 | Component | Requirement |
 |-----------|-------------|
-| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v0.8.0), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
+| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v0.9.2), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
 | **Relay (ipA)** | Linux with internet access, `rclone` installed, SSH server, dedicated user `groot-inbox` |
 | **OneDrive** | rclone remote configured on relay (`rclone config`) |
 
@@ -67,14 +67,14 @@ Whenever a `.tar.gz` lands in `~/inbox/`, the service fires `rclone move` to `on
 
 ## 2. Bastion setup
 
-### 2.1 Install groot (≥ v0.8.0)
+### 2.1 Install groot (≥ v0.9.2)
 
 ```bash
 # macOS
 brew install hrodrig/groot/groot
 
 # Linux (deb)
-curl -sL https://github.com/hrodrig/groot/releases/download/v0.8.0/groot_v0.8.0_linux_amd64.deb -o /tmp/groot.deb
+curl -sL https://github.com/hrodrig/groot/releases/download/v0.9.2/groot_v0.9.2_linux_amd64.deb -o /tmp/groot.deb
 sudo dpkg -i /tmp/groot.deb
 ```
 
@@ -101,7 +101,15 @@ export GROOT_UPLOAD_SFTP_IDENTITY_FILE=/home/groot/.ssh/id_ed25519_groot
 export KUBECONFIG=/home/groot/.kube/config
 ```
 
-### 2.5 Run
+### 2.5 Preflight
+
+```bash
+groot validate --config /etc/groot/groot.yml
+```
+
+Fix RBAC or disk issues before the first scheduled run. See [groot SPEC §12](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md).
+
+### 2.6 Run
 
 ```bash
 groot collect --config /etc/groot/groot.yml
@@ -119,6 +127,12 @@ Output: `.tar.gz` uploaded to `groot-inbox@ipA:~/inbox/groot-capture-*.tar.gz` �
 ## Verification
 
 ```bash
+# Preflight (once after config changes)
+groot validate --config /etc/groot/groot.yml
+
+# After collect, inspect archive locally (optional)
+groot inspect /path/to/groot-capture-*.tar.gz
+
 # After collect, check relay inbox
 ssh groot-inbox@ipA ls -la ~/inbox/
 

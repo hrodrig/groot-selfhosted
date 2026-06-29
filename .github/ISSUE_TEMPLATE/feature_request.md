@@ -21,4 +21,4 @@ Other approaches or upstream-only changes in **groot**.
 ## Scope check
 
 - [ ] This belongs in the **operator** repo (not groot CLI/SPEC)
-- [ ] I checked [groot ROADMAP](https://github.com/hrodrig/groot/blob/main/docs/ROADMAP.md) for product-side work
+- [ ] I checked [groot ROADMAP](https://github.com/hrodrig/groot/blob/main/ROADMAP.md) for product-side work

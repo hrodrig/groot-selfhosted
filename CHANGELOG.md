@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-06-29
+
+### Changed
+
+- Upstream pin bumped to **v0.9.2** (operator wins: `groot validate`, `groot inspect`, shell completion, exit codes, `--summary`, `run_id` in manifest/notify/upload, kubectl plugin). Helm chart **`version:`** **0.1.6**, **`appVersion`** **0.9.2**.
+- Runbooks: preflight with **`groot validate`**, archive check with **`groot inspect`**, notify `{{run_id}}` example; upstream config profiles linked from [groot `examples/profiles/`](https://github.com/hrodrig/groot/tree/main/examples/profiles).
+- SPEC/ROADMAP links point to repo-root paths in [groot](https://github.com/hrodrig/groot) (`SPECIFICATIONS.md`, `ROADMAP.md`).
+
 ## [0.2.3] - 2026-06-17
 
 ### Changed
@@ -80,7 +88,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.3...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.4...HEAD
+[0.2.4]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.2...v0.2.3
 [0.1.1]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.0

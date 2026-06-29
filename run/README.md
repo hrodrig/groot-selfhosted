@@ -2,7 +2,7 @@
 
 This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](https://github.com/hrodrig/groot).
 
-**Image pin (default in chart):** `ghcr.io/hrodrig/groot:0.8.0`
+**Image pin (default in chart):** `ghcr.io/hrodrig/groot:0.9.2`
 
 | Directory | Purpose |
 |-----------|---------|
@@ -24,6 +24,7 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 
 ## Related upstream docs
 
-- [SPECIFICATIONS.md](https://github.com/hrodrig/groot/blob/main/docs/SPECIFICATIONS.md) — behavior contract
+- [SPECIFICATIONS.md](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md) — behavior contract
 - [configs/groot.yml.sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample) — all config keys
+- [groot `examples/profiles/`](https://github.com/hrodrig/groot/tree/main/examples/profiles) — incident, airgap, EKS, compliance starters
 - [groot README — Install](https://github.com/hrodrig/groot/blob/main/README.md#install-or-update) — deb, rpm, Homebrew, `go install`

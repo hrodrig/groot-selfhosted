@@ -14,7 +14,7 @@ This repository is the **operator** companion to **[groot](https://github.com/hr
 | Belongs here | Belongs upstream in **groot** |
 |--------------|----------------------------------|
 | Helm chart, flat CronJob YAML, RBAC templates | CLI flags, collector behavior, bugs in `collect` |
-| `run/docker/`, `run/standalone/`, operator examples | `docs/SPECIFICATIONS.md`, config schema, Go code |
+| `run/docker/`, `run/standalone/`, operator examples | `SPECIFICATIONS.md`, config schema, Go code |
 | Pin updates for `ghcr.io/hrodrig/groot` in chart/docs | Image build, GoReleaser, release artifacts |
 
 **Rule of thumb:** if it needs a Go change or SPEC update, open the PR on **groot** first (or link the upstream issue/PR here).
@@ -35,7 +35,7 @@ Use focused branches, for example `docs/helm-pvc-note` or `fix/chart-rbac-typo`.
    - `run/deploy/helm/groot/Chart.yaml` (`appVersion`)
    - README / `run/README.md` / `AGENTS.md` pin lines
    - **`CHANGELOG.md`** under `[Unreleased]`
-4. **Helm chart:** keep `values.yaml` comments aligned with [groot SPEC §9](https://github.com/hrodrig/groot/blob/main/docs/SPECIFICATIONS.md#9-configuration-examples); full config keys stay in upstream `configs/groot.yml.sample`.
+4. **Helm chart:** keep `values.yaml` comments aligned with [groot SPEC §9](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md#9-configuration-examples); full config keys stay in upstream `configs/groot.yml.sample`.
 
 No Go tests run in this repo — validate manifests with `helm lint run/deploy/helm/groot`, `helm template`, or the **Helm chart** GitHub Actions workflow when you change templates.
 
