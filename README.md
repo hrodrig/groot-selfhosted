@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
+[![gghstats clones](https://gghstats.hermesrodriguez.com/api/v1/badge/hrodrig/groot-selfhosted?metric=clones)](https://gghstats.hermesrodriguez.com/hrodrig/groot-selfhosted)
 
 **Product:** [github.com/hrodrig/groot](https://github.com/hrodrig/groot) — CLI, SPEC, releases, and **`ghcr.io/hrodrig/groot`** image.  
 **This repo:** how to **deploy and schedule** GROOT (bastion, container, in-cluster CronJob).
