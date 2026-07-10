@@ -6,7 +6,7 @@ Install the binary from [GitHub Releases](https://github.com/hrodrig/groot/relea
 
 Copy a config (minimal example: [../examples/groot-minimal.yml](../examples/groot-minimal.yml); full schema: [upstream sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)).
 
-## Preflight (v0.9.x)
+## Preflight (v1.0.x)
 
 Before scheduling cron or systemd, run **`groot validate`** against your config and kubeconfig:
 
