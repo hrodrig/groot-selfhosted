@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-07-10
+
+### Changed
+
+- Upstream pin bumped to **v1.0.1** (Go **1.26.5** security patch: **CVE-2026-39822**, **CVE-2026-42505**). Helm chart **`version:`** **0.1.7**, **`appVersion`** **1.0.1**.
+- Runbooks: preflight/archive examples reference **v1.0.x**; airgapped relay install pin **v1.0.1**.
+
 ## [0.2.4] - 2026-06-29
 
 ### Changed
@@ -88,7 +95,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.2...v0.2.3
 [0.1.1]: https://github.com/hrodrig/groot-selfhosted/releases/tag/v0.1.1
