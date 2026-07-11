@@ -2,7 +2,7 @@
 
 This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](https://github.com/hrodrig/groot).
 
-**Image pin (default in chart):** `ghcr.io/hrodrig/groot:1.0.1`
+**Image pin (default in chart):** `ghcr.io/hrodrig/groot:1.0.2`
 
 | Directory | Purpose |
 |-----------|---------|
