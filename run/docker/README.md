@@ -2,13 +2,15 @@
 
 Run the published **GROOT** image against a cluster using a host **kubeconfig**. For building the image from source, see upstream [groot](https://github.com/hrodrig/groot) (`Dockerfile`, GoReleaser).
 
-**Image:** `ghcr.io/hrodrig/groot:1.0.2`
+**Image:** `ghcr.io/hrodrig/groot:1.0.3`
 
 ## Pull
 
 ```bash
-docker pull ghcr.io/hrodrig/groot:1.0.2
+docker pull ghcr.io/hrodrig/groot:1.0.3
 ```
+
+**Note (v1.0.3+):** bare `docker run ghcr.io/hrodrig/groot` (no args) prints **`--help`**, not a sample collect. Pass `collect --config …` explicitly (examples below).
 
 ## Run with kubeconfig and output directory
 
@@ -21,7 +23,7 @@ docker run --rm \
   -v "$HOME/.kube:/home/nonroot/.kube:ro" \
   -v "$(pwd)/out:/app/out" \
   -v "$(pwd)/groot.yml:/app/groot.yml:ro" \
-  ghcr.io/hrodrig/groot:1.0.2 \
+  ghcr.io/hrodrig/groot:1.0.3 \
   collect --config /app/groot.yml
 ```
 
@@ -35,7 +37,7 @@ Validate kubeconfig, RBAC, and disk before the first collect:
 docker run --rm \
   -v "$HOME/.kube:/home/nonroot/.kube:ro" \
   -v "$(pwd)/groot.yml:/app/groot.yml:ro" \
-  ghcr.io/hrodrig/groot:1.0.2 \
+  ghcr.io/hrodrig/groot:1.0.3 \
   validate --config /app/groot.yml
 ```
 
@@ -43,7 +45,7 @@ Inspect a finished archive (no cluster access required):
 
 ```bash
 docker run --rm -v "$(pwd)/out:/app/out:ro" \
-  ghcr.io/hrodrig/groot:1.0.2 \
+  ghcr.io/hrodrig/groot:1.0.3 \
   inspect /app/out/groot-capture-*.tar.gz
 ```
 
@@ -54,7 +56,7 @@ podman run --rm \
   -v "$HOME/.kube:/home/nonroot/.kube:ro" \
   -v "$(pwd)/out:/app/out" \
   -v "$(pwd)/groot.yml:/app/groot.yml:ro" \
-  ghcr.io/hrodrig/groot:1.0.2 \
+  ghcr.io/hrodrig/groot:1.0.3 \
   collect --config /app/groot.yml
 ```
 
