@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7] - 2026-07-12
+
+### Changed
+
+- Upstream pin bumped to **v1.0.3** (post-audit hygiene: Docker default CMD `--help`, `groot notify test`, email/GCS test coverage, `x/crypto` v0.54.0). Helm chart **`version:`** **0.1.9**, **`appVersion`** **1.0.3**.
+- Runbooks: Docker, flat manifests, Helm examples, and airgapped relay install pin **v1.0.3**.
+- Docker runbook: document bare `docker run` prints `--help` (v1.0.3+); pass subcommand explicitly for collect.
+
 ## [0.2.6] - 2026-07-11
 
 ### Changed
@@ -102,7 +110,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.6...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...HEAD
+[0.2.7]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.3...v0.2.4
