@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Airgapped relay:** SharePoint / OneDrive as rclone destinations ([`DESTINATIONS.md`](run/examples/airgapped-relay/DESTINATIONS.md)) — headless `rclone authorize`, Entra admin-consent notes, OneDrive Business folder paths; `rclone-destination.env.example`; systemd unit reads `RCLONE_REMOTE`. Online bastion (no SFTP hop) section in the playbook README.
+
+### Changed
+
+- **Airgapped relay** framing: Microsoft cloud via rclone on the edge (not native groot upload). Index links in `run/README.md` and `run/examples/README.md`.
+
 ## [0.2.7] - 2026-07-12
 
 ### Changed

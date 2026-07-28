@@ -1,8 +1,12 @@
 [Unit]
-Description=Upload groot archives to OneDrive via rclone
+Description=Upload groot archives to Microsoft cloud via rclone
 After=network-online.target
+# Requires /etc/groot/rclone-destination.env with RCLONE_REMOTE=… (see rclone-destination.env.example)
 
 [Service]
 Type=oneshot
 User=groot-inbox
-ExecStart=/usr/bin/rclone move /home/groot-inbox/inbox/ onedrive:groot-archives/ --include "*.tar.gz" --delete-empty-src-dirs -v
+EnvironmentFile=-/etc/groot/rclone-destination.env
+# Default matches the historical OneDrive playbook if the env file is missing.
+Environment=RCLONE_REMOTE=onedrive:groot-archives/
+ExecStart=/usr/bin/rclone move /home/groot-inbox/inbox/ ${RCLONE_REMOTE} --include "*.tar.gz" --delete-empty-src-dirs -v
