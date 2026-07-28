@@ -3,7 +3,7 @@
 | File | Purpose |
 |------|---------|
 | [groot-minimal.yml](groot-minimal.yml) | Small starter for bastion or in-cluster `/out` |
-| [airgapped-relay/](airgapped-relay/README.md) | **SFTP upload** bastion → relay → rclone → OneDrive (airgapped clusters) |
+| [airgapped-relay/](airgapped-relay/README.md) | **SFTP upload** bastion → relay → rclone → **OneDrive or SharePoint** (airgapped); optional online bastion without relay — see [DESTINATIONS.md](airgapped-relay/DESTINATIONS.md) |
 
 For **every config key**, defaults, and notify/upload schema, use the upstream **[configs/groot.yml.sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)** and **[SPEC §4–§9](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md)**.
 
