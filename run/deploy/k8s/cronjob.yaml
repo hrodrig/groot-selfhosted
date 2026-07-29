@@ -100,7 +100,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: groot
-              image: ghcr.io/hrodrig/groot:1.0.3
+              image: ghcr.io/hrodrig/groot:1.0.4
               args: ["collect", "--config", "/config/groot.yml"]
               volumeMounts:
                 - name: config

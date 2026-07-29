@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2026-07-29
+
 ### Added
 
 - **Airgapped relay:** SharePoint / OneDrive as rclone destinations ([`DESTINATIONS.md`](run/examples/airgapped-relay/DESTINATIONS.md)) — headless `rclone authorize`, Entra admin-consent notes, OneDrive Business folder paths; `rclone-destination.env.example`; systemd unit reads `RCLONE_REMOTE`. Online bastion (no SFTP hop) section in the playbook README.
 
 ### Changed
 
+- Upstream pin bumped to **v1.0.4** (security: `grpc` v1.82.1, OpenTelemetry v1.44.0; `-v` Usage dump fix). Helm chart **`version:`** **0.1.10**, **`appVersion`** **1.0.4**.
+- Runbooks: Docker, flat manifests, Helm examples, and airgapped relay install pin **v1.0.4**.
 - **Airgapped relay** framing: Microsoft cloud via rclone on the edge (not native groot upload). Index links in `run/README.md` and `run/examples/README.md`.
 
 ## [0.2.7] - 2026-07-12
@@ -118,7 +122,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...HEAD
+[0.2.8]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.4...v0.2.5
