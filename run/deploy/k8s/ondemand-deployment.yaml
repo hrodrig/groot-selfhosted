@@ -128,7 +128,7 @@ spec:
           image: curlimages/curl:8.5.0
           env:
             - name: GROOT_VERSION
-              value: "1.0.3"
+              value: "1.0.4"
           command:
             - sh
             - -ec

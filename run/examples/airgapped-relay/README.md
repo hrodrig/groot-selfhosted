@@ -20,7 +20,7 @@ If the bastion **has** internet and you do not need the SSH hop, see [§4 Online
 
 | Component | Requirement |
 |-----------|-------------|
-| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v1.0.3), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
+| **Bastion** | Linux (amd64/arm64), `groot` binary (≥ v1.0.4), kubeconfig to cluster API, SSH keypair, outbound SSH to relay allowed |
 | **Relay (ipA)** | Linux with internet access, `rclone` installed, SSH server, dedicated user `groot-inbox` |
 | **Microsoft cloud** | rclone remote on the relay — OneDrive and/or SharePoint ([DESTINATIONS.md](DESTINATIONS.md)) |
 
@@ -70,14 +70,14 @@ Whenever a `.tar.gz` lands in `~/inbox/`, the oneshot runs `rclone move` to `$RC
 
 ## 2. Bastion setup
 
-### 2.1 Install groot (≥ v1.0.3)
+### 2.1 Install groot (≥ v1.0.4)
 
 ```bash
 # macOS
 brew install hrodrig/groot/groot
 
 # Linux (deb)
-curl -sL https://github.com/hrodrig/groot/releases/download/v1.0.3/groot_v1.0.3_linux_amd64.deb -o /tmp/groot.deb
+curl -sL https://github.com/hrodrig/groot/releases/download/v1.0.4/groot_v1.0.4_linux_amd64.deb -o /tmp/groot.deb
 sudo dpkg -i /tmp/groot.deb
 ```
 
