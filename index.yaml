@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   groot:
   - apiVersion: v2
+    appVersion: 1.0.4
+    created: "2026-07-29T15:33:34.892186953Z"
+    description: Scheduled in-cluster Kubernetes log collection with GROOT
+    digest: 7211bfa21c5572bd8ee55fcf64d23f42cbb20aaf82ba9ed94bfa415c3af40823
+    home: https://github.com/hrodrig/groot-selfhosted
+    keywords:
+    - kubernetes
+    - logs
+    - incident-response
+    name: groot
+    sources:
+    - https://github.com/hrodrig/groot
+    - https://github.com/hrodrig/groot-selfhosted
+    type: application
+    urls:
+    - https://github.com/hrodrig/groot-selfhosted/releases/download/groot-0.1.10/groot-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
     appVersion: 1.0.3
     created: "2026-07-12T22:15:09.725160736Z"
     description: Scheduled in-cluster Kubernetes log collection with GROOT
@@ -145,4 +163,4 @@ entries:
     urls:
     - https://github.com/hrodrig/groot-selfhosted/releases/download/groot-0.1.1/groot-0.1.1.tgz
     version: 0.1.1
-generated: "2026-07-12T22:15:09.725202073Z"
+generated: "2026-07-29T15:33:34.892226618Z"
