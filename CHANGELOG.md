@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.9] - 2026-08-04
+
+### Changed
+
+- Upstream pin bumped to **v1.0.6** (man(1)+nfpm+BSD packaging, CONTRIBUTING collector guide, expanded `examples/`). Helm chart **`version:`** **0.1.11**, **`appVersion`** **1.0.6**.
+- Runbooks: Docker, flat manifests, Helm examples, and airgapped relay install pin **v1.0.6**.
+
 ## [0.2.8] - 2026-07-29
 
 ### Added
@@ -122,7 +129,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.9...HEAD
+[0.2.9]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.5...v0.2.6
