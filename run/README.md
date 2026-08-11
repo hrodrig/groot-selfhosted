@@ -22,6 +22,7 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 | Linux host + cron only | [standalone/README.md](standalone/README.md) |
 | Need a starter config | [examples/groot-minimal.yml](examples/groot-minimal.yml) |
 | Archives on a VPS + FileZilla | [examples/sftp-vps/](examples/sftp-vps/README.md) (`upload.sftp` inbox; no Nextcloud) |
+| Archives to Contabo Object Storage | [examples/s3-contabo/](examples/s3-contabo/README.md) (`upload.s3` + S3-compatible endpoint) |
 | Archives to OneDrive / SharePoint | [examples/airgapped-relay/](examples/airgapped-relay/README.md) (rclone on the edge; not native in groot) |
 
 ## Related upstream docs

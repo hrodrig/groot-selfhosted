@@ -4,6 +4,7 @@
 |------|---------|
 | [groot-minimal.yml](groot-minimal.yml) | Small starter for bastion or in-cluster `/out` |
 | [sftp-vps/](sftp-vps/README.md) | **SFTP storage VPS** inbox + FileZilla checklist (no Nextcloud / rclone) |
+| [s3-contabo/](s3-contabo/README.md) | **Contabo Object Storage** (`upload.s3` + endpoint) — transparent collect → bucket |
 | [airgapped-relay/](airgapped-relay/README.md) | **SFTP upload** bastion → relay → rclone → **OneDrive or SharePoint** (airgapped); optional online bastion without relay — see [DESTINATIONS.md](airgapped-relay/DESTINATIONS.md) |
 
 For **every config key**, defaults, and notify/upload schema, use the upstream **[configs/groot.yml.sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)** and **[SPEC §4–§9](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md)**.

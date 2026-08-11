@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **SFTP storage VPS** operator example: [`run/examples/sftp-vps/`](run/examples/sftp-vps/README.md) — `groot.yml` + OpenSSH/FileZilla checklist (inbox without Nextcloud or rclone).
+- **Contabo Object Storage** operator example: [`run/examples/s3-contabo/`](run/examples/s3-contabo/README.md) — `upload.s3` + Contabo S3-compatible endpoint checklist (keys via `AWS_*` env; placeholders only).
 
 ## [0.2.9] - 2026-08-04
 
