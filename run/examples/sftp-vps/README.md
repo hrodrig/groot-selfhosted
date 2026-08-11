@@ -105,7 +105,7 @@ sftp -i ~/.ssh/id_ed25519_groot -P 22 groot-inbox@storage.example.com
 
 ### E. Bastion / laptop — groot
 
-- [ ] `groot` installed ([releases](https://github.com/hrodrig/groot/releases); pin ≥ **v1.0.6**, ideally current)
+- [ ] `groot` installed ([releases](https://github.com/hrodrig/groot/releases); pin ≥ **v1.1.1**, ideally current)
 - [ ] Kubeconfig can reach the cluster API
 - [ ] Copy [groot.yml](groot.yml) → `/etc/groot/groot.yml` (or another path) and set `host` / `user` / `remote_dir`
 - [ ] Pin host key:
