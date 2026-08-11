@@ -1,0 +1,46 @@
+# Storage VPS inbox — collect on bastion/laptop, upload via SFTP.
+# No Nextcloud, no rclone. Browse archives with FileZilla (SFTP) later.
+#
+# Copy to /etc/groot/groot.yml or pass with --config.
+#
+# Secrets via env — never in YAML:
+#   GROOT_UPLOAD_SFTP_IDENTITY_FILE=/home/groot/.ssh/id_ed25519_groot
+#   KUBECONFIG=/home/groot/.kube/config   # or set kubeconfig below
+#
+# Checklist + OpenSSH hardening: README.md in this directory.
+# Schema: https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample
+
+config_version: 1
+kubeconfig: "~/.kube/config"
+output_dir: "./out"
+file_prefix: "groot-capture"
+
+collection:
+  timeout: 20m
+  worker_concurrency: 6
+  namespaces:
+    - kube-system
+    - default
+  include_pod_logs: true
+  include_previous_logs: true
+  pod_log_tail_lines: 1500
+  include_node_details: false
+  include_node_logs: false
+  include_pod_metrics: false
+
+upload:
+  enabled: true
+  continue_on_error: true
+  timeout: 10m
+  s3:
+    enabled: false
+  gcs:
+    enabled: false
+  sftp:
+    enabled: true
+    host: "storage.example.com" # VPS hostname or IP
+    port: 22
+    user: "groot-inbox"
+    remote_dir: "inbox"
+    known_hosts_file: "/etc/groot/known_hosts"
+    # allow_insecure_host_key: false  # never true in production

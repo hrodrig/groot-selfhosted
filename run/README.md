@@ -2,7 +2,7 @@
 
 This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](https://github.com/hrodrig/groot).
 
-**Image pin (default in chart):** `ghcr.io/hrodrig/groot:1.0.6`
+**Image pin (default in chart):** `ghcr.io/hrodrig/groot:1.1.1`
 
 | Directory | Purpose |
 |-----------|---------|
@@ -21,6 +21,8 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 | Kubernetes, **scheduled** collection, no Helm | [deploy/k8s/cronjob.yaml](deploy/k8s/cronjob.yaml) |
 | Linux host + cron only | [standalone/README.md](standalone/README.md) |
 | Need a starter config | [examples/groot-minimal.yml](examples/groot-minimal.yml) |
+| Archives on a VPS + FileZilla | [examples/sftp-vps/](examples/sftp-vps/README.md) (`upload.sftp` inbox; no Nextcloud) |
+| Archives to Contabo Object Storage | [examples/s3-contabo/](examples/s3-contabo/README.md) (`upload.s3` + S3-compatible endpoint) |
 | Archives to OneDrive / SharePoint | [examples/airgapped-relay/](examples/airgapped-relay/README.md) (rclone on the edge; not native in groot) |
 
 ## Related upstream docs

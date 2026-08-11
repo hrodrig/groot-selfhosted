@@ -1,0 +1,50 @@
+# Contabo Object Storage — post-collect upload (S3-compatible).
+# Transparent path for operators: collect → bucket (no FileZilla required).
+# Future gfs (groot files share) can sit in front of the same bucket.
+#
+# Copy to /etc/groot/groot.yml or pass with --config.
+#
+# Secrets via env — never in YAML:
+#   AWS_ACCESS_KEY_ID=...
+#   AWS_SECRET_ACCESS_KEY=...
+#   AWS_REGION=EU
+#   KUBECONFIG=/home/groot/.kube/config   # or set kubeconfig below
+#
+# Contabo panel: Account → Security and access → Object Storage S3 credentials
+# Checklist: README.md in this directory.
+# Schema: https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample
+
+config_version: 1
+kubeconfig: "~/.kube/config"
+output_dir: "./out"
+file_prefix: "groot-capture"
+
+collection:
+  timeout: 20m
+  worker_concurrency: 6
+  namespaces:
+    - kube-system
+    - default
+  include_pod_logs: true
+  include_previous_logs: true
+  pod_log_tail_lines: 1500
+  include_node_details: false
+  include_node_logs: false
+  include_pod_metrics: false
+
+upload:
+  enabled: true
+  continue_on_error: true
+  timeout: 10m
+  s3:
+    enabled: true
+    # Replace placeholders with values from the Contabo console (never commit real names/keys).
+    bucket: "<your-bucket>"
+    region: "EU"
+    # Host from Contabo bucket URL — path-style is automatic when endpoint is set.
+    endpoint: "https://<region>.contabostorage.com"
+    key_prefix: "captures/"
+  gcs:
+    enabled: false
+  sftp:
+    enabled: false

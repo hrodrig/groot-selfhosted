@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2026-08-11
+
+### Added
+
+- **SFTP storage VPS** operator example: [`run/examples/sftp-vps/`](run/examples/sftp-vps/README.md) — `groot.yml` + OpenSSH/FileZilla checklist (inbox without Nextcloud or rclone).
+- **Contabo Object Storage** operator example: [`run/examples/s3-contabo/`](run/examples/s3-contabo/README.md) — `upload.s3` + Contabo S3-compatible endpoint checklist (keys via `AWS_*` env; placeholders only; warn on trailing spaces / `SignatureDoesNotMatch`).
+
+### Changed
+
+- Upstream pin bumped to **v1.1.1** (kubeconfig `~` expansion, unique `sessionBase` short, S3 credential trim). Helm chart **`version:`** **0.1.12**, **`appVersion`** **1.1.1**.
+- Runbooks: Docker, flat manifests, Helm examples, and airgapped relay install pin **v1.1.1**.
+
 ## [0.2.9] - 2026-08-04
 
 ### Changed
@@ -129,7 +141,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.9...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.10...HEAD
+[0.2.10]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.6...v0.2.7
