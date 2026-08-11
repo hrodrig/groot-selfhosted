@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **SFTP storage VPS** operator example: [`run/examples/sftp-vps/`](run/examples/sftp-vps/README.md) — `groot.yml` + OpenSSH/FileZilla checklist (inbox without Nextcloud or rclone).
+
 ## [0.2.9] - 2026-08-04
 
 ### Changed
