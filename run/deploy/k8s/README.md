@@ -78,4 +78,6 @@ Manual one-shot from the CronJob template:
 kubectl -n groot create job --from=cronjob/groot-collect groot-manual-$(date +%s)
 ```
 
+**Note:** CronJob `concurrencyPolicy: Forbid` does **not** stop these manual Jobs from overlapping. Upload success lines need `--verbose` on the container args (see comments in `cronjob.yaml`). For S3, add `envFrom` → Secret with `AWS_*` and `upload.s3` in the ConfigMap.
+
 See [../README.md](../README.md) for Helm and RBAC notes.

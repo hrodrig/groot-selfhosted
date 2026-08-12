@@ -30,6 +30,13 @@ spec:
                 - collect
                 - --config
                 - /config/groot.yml
+                {{- with .Values.extraArgs }}
+                {{- toYaml . | nindent 16 }}
+                {{- end }}
+              {{- with .Values.extraEnvFrom }}
+              envFrom:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
               volumeMounts:
                 - name: config
                   mountPath: /config

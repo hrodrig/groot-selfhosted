@@ -20,7 +20,7 @@ helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=1.1.1
+  --set image.tag=v1.1.1
 ```
 
 Pin chart semver when needed: **`helm search repo groot -l`** then **`--version <chart-version>`**.
@@ -31,7 +31,7 @@ Embed your config:
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
   --set-file config.grootYml=./groot.yml \
-  --set image.tag=1.1.1 \
+  --set image.tag=v1.1.1 \
   --set schedule="0 2 * * *"
 ```
 
@@ -41,7 +41,7 @@ helm upgrade --install groot groot/groot \
 # Default: CronJob every 6h, PVC for /out, read-only ClusterRole
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=1.1.1
+  --set image.tag=v1.1.1
 ```
 
 Example `groot.yml` for in-cluster (notify + redaction):
@@ -100,6 +100,10 @@ kubectl -n groot create job --from=cronjob/groot-collect groot-manual-test
 kubectl -n groot logs job/groot-manual-test
 ```
 
+**Concurrency:** `Forbid` on the CronJob only gates **scheduled** ticks. Manual `create job --from=…` can still run in parallel.
+
+**Upload logs:** add `--verbose` to Job args (or Helm `extraArgs`) to see `s3 uploaded …`; without it, upload can succeed with INFO-only logs.
+
 Archives appear on the PVC at `/out` inside the job pod.
 
 ## Preflight and archive check (v1.0.x)
@@ -123,7 +127,7 @@ kubectl -n groot exec deploy/groot-ondemand -- \
 
 ```bash
 kubectl -n groot logs job/groot-manual-test | tail
-# Or exec into a debug pod with the same ServiceAccount and image tag 1.1.1
+# Or exec into a debug pod with the same ServiceAccount and image tag v1.1.1
 ```
 
 After a successful collect, inspect an archive without cluster access:

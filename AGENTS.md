@@ -10,7 +10,7 @@ This repository documents **how to run GROOT** in operator environments. It is *
 ## Upstream pin
 
 - **GROOT product:** [github.com/hrodrig/groot](https://github.com/hrodrig/groot) — pin **`v1.1.1`** for docs and chart defaults.
-- **Image:** `ghcr.io/hrodrig/groot:1.1.1` (or `:v1.1.1` tag from Releases).
+- **Image:** `ghcr.io/hrodrig/groot:v1.1.1` (GoReleaser also tags `:latest`; bare `:1.1.1` is **not** published).
 - **Full config schema:** [configs/groot.yml.sample](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample) and [SPECIFICATIONS.md](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md).
 
 ## Scope

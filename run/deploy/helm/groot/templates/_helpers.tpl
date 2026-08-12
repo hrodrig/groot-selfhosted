@@ -24,6 +24,10 @@
 {{- end -}}
 
 {{- define "groot.image" -}}
+{{- /* GHCR publishes vX.Y.Z (+ latest), not bare X.Y.Z — normalize a missing v. */ -}}
 {{- $tag := default .Chart.AppVersion .Values.image.tag -}}
+{{- if not (hasPrefix "v" $tag) -}}
+{{- $tag = printf "v%s" $tag -}}
+{{- end -}}
 {{- printf "%s:%s" .Values.image.repository $tag -}}
 {{- end -}}

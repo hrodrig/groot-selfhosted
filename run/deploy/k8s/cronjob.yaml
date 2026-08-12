@@ -100,8 +100,13 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: groot
-              image: ghcr.io/hrodrig/groot:1.1.1
+              image: ghcr.io/hrodrig/groot:v1.1.1
               args: ["collect", "--config", "/config/groot.yml"]
+              # Optional: ["collect","--config","/config/groot.yml","--verbose"] so upload OK lines appear.
+              # Optional S3/GCS creds (create Secret first):
+              # envFrom:
+              #   - secretRef:
+              #       name: groot-s3
               volumeMounts:
                 - name: config
                   mountPath: /config
