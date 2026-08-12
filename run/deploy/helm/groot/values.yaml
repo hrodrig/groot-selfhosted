@@ -3,10 +3,23 @@
 
 image:
   repository: ghcr.io/hrodrig/groot
-  tag: "" # defaults to Chart appVersion
+  # Empty → Chart.appVersion (vX.Y.Z). GHCR tags are v-prefixed; bare X.Y.Z is normalized.
+  tag: ""
   pullPolicy: IfNotPresent
 
 schedule: "0 */6 * * *"
+
+# Extra container args after `collect --config /config/groot.yml`.
+# Example: [--verbose] so post-collect upload OK lines appear in Job logs
+# (logger.OK is verbose-gated in groot).
+extraArgs: []
+
+# Inject env from Secrets/ConfigMaps (e.g. AWS_* for upload.s3).
+# Example:
+#   extraEnvFrom:
+#     - secretRef:
+#         name: groot-s3
+extraEnvFrom: []
 
 serviceAccount:
   create: true
@@ -18,6 +31,7 @@ rbac:
 
 config:
   # Embedded groot.yml (see configs/groot.yml.sample). Override for your cluster.
+  # For S3/GCS/SFTP: set upload.* here; put credentials in a Secret + extraEnvFrom.
   grootYml: |
     output_dir: /out
     file_prefix: groot-capture
@@ -54,6 +68,8 @@ resources:
 
 successfulJobsHistoryLimit: 3
 failedJobsHistoryLimit: 1
+# Forbid only applies to scheduled CronJob ticks. Manual
+# `kubectl create job --from=cronjob/...` can still overlap — gate that yourself.
 concurrencyPolicy: Forbid
 startingDeadlineSeconds: 600
 backoffLimit: 1

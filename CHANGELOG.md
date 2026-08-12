@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.11] - 2026-08-12
+
+### Changed
+
+- **Image pin:** GHCR tags are **`vX.Y.Z`** (and `latest`) — not bare `X.Y.Z`. Chart **`appVersion`** → **`v1.1.1`**, chart **`version`** → **0.1.13**. Flat CronJob image → `ghcr.io/hrodrig/groot:v1.1.1`. Helm `groot.image` helper prefixes `v` if missing so old `--set image.tag=1.1.1` still pulls.
+- Helm: **`extraEnvFrom`** (e.g. Secret `AWS_*` for `upload.s3`) and **`extraArgs`** (e.g. `--verbose` for upload OK lines).
+- Docs: `concurrencyPolicy: Forbid` ≠ blocking `kubectl create job --from=…`; upload success log is verbose-gated.
+
 ## [0.2.10] - 2026-08-11
 
 ### Added
@@ -141,7 +149,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.10...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.11...HEAD
+[0.2.11]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.7...v0.2.8
