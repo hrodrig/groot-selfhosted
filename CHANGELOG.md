@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.12] - 2026-08-18
+
 ### Added
 
 - Helm: `image.pullSecrets` on the CronJob pod; `serviceAccount.imagePullSecrets` (defaults to `image.pullSecrets`) so **groot-trigger** Jobs using the same SA inherit registry pull (#chart 0.1.14)
@@ -159,7 +161,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Helm chart default image pin: **`ghcr.io/hrodrig/groot:0.6.1`**.
 
-[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.11...HEAD
+[Unreleased]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.12...HEAD
+[0.2.12]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.11...v0.2.12
 [0.2.11]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/hrodrig/groot-selfhosted/compare/v0.2.8...v0.2.9
