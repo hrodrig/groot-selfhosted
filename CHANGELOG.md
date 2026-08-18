@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Helm: `image.pullSecrets` on the CronJob pod; `serviceAccount.imagePullSecrets` (defaults to `image.pullSecrets`) so **groot-trigger** Jobs using the same SA inherit registry pull (#chart 0.1.14)
+- Helm: `podAnnotations`, `podSecurityContext`, `securityContext` (distroless UID/GID `65532`, `readOnlyRootFilesystem`, `/tmp` emptyDir; Istio annotation example)
+
+### Changed
+
+- Chart **`version:`** **0.1.14** (`appVersion` still **v1.1.1**)
+- Docs: air-gapped `image.repository`; dual-install with [groot-trigger](https://github.com/hrodrig/groot-trigger) (`deploy/k8s/always/` only — skip `job-sa/`)
+
 ## [0.2.11] - 2026-08-12
 
 ### Changed

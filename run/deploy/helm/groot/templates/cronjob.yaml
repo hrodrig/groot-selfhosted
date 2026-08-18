@@ -19,9 +19,21 @@ spec:
           labels:
             app.kubernetes.io/name: {{ include "groot.name" . }}
             app.kubernetes.io/instance: {{ .Release.Name }}
+          {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
         spec:
           serviceAccountName: {{ include "groot.serviceAccountName" . }}
           restartPolicy: OnFailure
+          {{- with .Values.image.pullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.podSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           containers:
             - name: groot
               image: {{ include "groot.image" . | quote }}
@@ -37,12 +49,18 @@ spec:
               envFrom:
                 {{- toYaml . | nindent 16 }}
               {{- end }}
+              {{- with .Values.securityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
               volumeMounts:
                 - name: config
                   mountPath: /config
                   readOnly: true
                 - name: out
                   mountPath: /out
+                - name: tmp
+                  mountPath: /tmp
               resources:
                 {{- toYaml .Values.resources | nindent 16 }}
           volumes:
@@ -56,6 +74,8 @@ spec:
               {{- else }}
               emptyDir: {}
               {{- end }}
+            - name: tmp
+              emptyDir: {}
           {{- with .Values.nodeSelector }}
           nodeSelector:
             {{- toYaml . | nindent 12 }}

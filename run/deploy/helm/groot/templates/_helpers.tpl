@@ -31,3 +31,15 @@
 {{- end -}}
 {{- printf "%s:%s" .Values.image.repository $tag -}}
 {{- end -}}
+
+{{/*
+Pull secrets on the Job ServiceAccount. Prefer serviceAccount.imagePullSecrets;
+otherwise copy image.pullSecrets so groot-trigger Jobs using this SA inherit them.
+*/}}
+{{- define "groot.serviceAccountPullSecrets" -}}
+{{- if .Values.serviceAccount.imagePullSecrets -}}
+{{- toYaml .Values.serviceAccount.imagePullSecrets -}}
+{{- else if .Values.image.pullSecrets -}}
+{{- toYaml .Values.image.pullSecrets -}}
+{{- end -}}
+{{- end -}}

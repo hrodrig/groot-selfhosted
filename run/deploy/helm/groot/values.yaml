@@ -6,6 +6,11 @@ image:
   # Empty → Chart.appVersion (vX.Y.Z). GHCR tags are v-prefixed; bare X.Y.Z is normalized.
   tag: ""
   pullPolicy: IfNotPresent
+  # Private / air-gapped registry. Also copied onto the ServiceAccount unless
+  # serviceAccount.imagePullSecrets is set (so groot-trigger Jobs inherit pull).
+  # pullSecrets:
+  #   - name: YOUR_PULL_SECRET
+  pullSecrets: []
 
 schedule: "0 */6 * * *"
 
@@ -25,6 +30,33 @@ serviceAccount:
   create: true
   name: ""
   annotations: {}
+  # Empty → use image.pullSecrets. Set here only to override that list on the SA.
+  imagePullSecrets: []
+
+# Collect Job pod template (CronJob). groot-trigger Jobs do not use this map;
+# they only inherit ServiceAccount imagePullSecrets.
+# podAnnotations:
+#   sidecar.istio.io/inject: "false"
+podAnnotations: {}
+
+# Distroless nonroot UID (matches ghcr.io/hrodrig/groot and groot-trigger Jobs).
+podSecurityContext:
+  fsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  capabilities:
+    drop:
+      - ALL
 
 rbac:
   create: true

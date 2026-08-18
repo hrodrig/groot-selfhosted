@@ -26,6 +26,22 @@ helm upgrade --install groot groot/groot \
 
 If **`helm repo add`** fails, use **From this repository** below until the first chart release completes.
 
+### Air-gapped / private registry
+
+`--set image.tag` still pulls **`ghcr.io/hrodrig/groot`** unless you override **`image.repository`**. Put **`image.pullSecrets`** on the chart so the CronJob **and** the Job ServiceAccount can pull (groot-trigger Jobs reuse that SA):
+
+```bash
+helm upgrade --install groot groot/groot \
+  --namespace groot --create-namespace \
+  --set image.repository=registry.example.com/your-org/groot \
+  --set image.tag=v1.1.1 \
+  --set 'image.pullSecrets[0].name=YOUR_PULL_SECRET'
+```
+
+### Beside groot-trigger (HTTP on-demand)
+
+This chart already creates the collect Job ServiceAccount and collector ClusterRole. After install, apply only **groot-trigger** [`deploy/k8s/always/`](https://github.com/hrodrig/groot-trigger/blob/develop/deploy/k8s/README.md) — **do not** apply `job-sa/` (Helm owns SA `groot` when the release name is `groot`). Set trigger env `GROOT_JOB_SA` to the Helm ServiceAccount name.
+
 ## From this repository (clone)
 
 From a clone of **groot-selfhosted** (repo root):
@@ -108,7 +124,7 @@ Put `upload.s3` (bucket, endpoint, region) in `prod-groot.yml`. Never put access
 kubectl -n groot create job --from=cronjob/<release> groot-manual-$(date +%s)
 ```
 
-Manual Jobs can run in parallel and hammer the API / fill the PVC. For a future HTTP trigger, enforce single-flight in the trigger service (e.g. HTTP 409).
+Manual Jobs can run in parallel and hammer the API / fill the PVC. HTTP on-demand collect is **[groot-trigger](https://github.com/hrodrig/groot-trigger)** (409 single-flight there, not in this CronJob).
 
 ### Disable PVC (emptyDir — archives lost when pod exits)
 
@@ -124,8 +140,12 @@ helm upgrade --install groot groot/groot \
 | Value | Default | Purpose |
 |-------|---------|---------|
 | `schedule` | `0 */6 * * *` | Cron expression |
-| `image.repository` | `ghcr.io/hrodrig/groot` | Container image |
+| `image.repository` | `ghcr.io/hrodrig/groot` | Container image (override for air-gapped mirrors) |
 | `image.tag` | Chart `appVersion` (`v1.1.1`) | GHCR tag (**`v`-prefixed**). Bare `1.1.1` is normalized to `v1.1.1`. |
+| `image.pullSecrets` | `[]` | CronJob pod pull secrets; also copied onto the Job SA unless `serviceAccount.imagePullSecrets` is set |
+| `serviceAccount.imagePullSecrets` | `[]` (→ `image.pullSecrets`) | SA pull secrets so groot-trigger Jobs inherit registry auth |
+| `podAnnotations` | `{}` | Job pod annotations (e.g. `sidecar.istio.io/inject: "false"`) |
+| `podSecurityContext` / `securityContext` | distroless `65532` | Restricted PSS; `readOnlyRootFilesystem` + `/tmp` emptyDir |
 | `extraArgs` | `[]` | Extra args after `collect --config …` (e.g. `--verbose` for upload OK lines) |
 | `extraEnvFrom` | `[]` | `envFrom` entries (e.g. Secret with `AWS_*` for `upload.s3`) |
 | `config.grootYml` | embedded minimal config | Full `groot.yml` in ConfigMap |
