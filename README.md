@@ -1,6 +1,6 @@
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.2.11-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.2.12-blue)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/hrodrig/groot-selfhosted/actions/workflows/ci.yml)
 [![GROOT product](https://img.shields.io/github/v/release/hrodrig/groot?display_name=tag&label=groot&logo=github)](https://github.com/hrodrig/groot/releases)
