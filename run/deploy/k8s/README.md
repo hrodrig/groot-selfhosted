@@ -66,6 +66,10 @@ kubectl apply -f run/deploy/k8s/ondemand-deployment.yaml
 
 If Helm already created ConfigMap `groot` and PVC `groot`, either `helm uninstall groot -n groot` and apply the full on-demand manifest, or patch the Deployment to reference your existing ConfigMap/PVC names.
 
+### Already installed with Helm + HTTP trigger?
+
+Keep the CronJob. Apply **[groot-trigger](https://github.com/hrodrig/groot-trigger)** `deploy/k8s/always/` only — skip `job-sa/` so you do not fight Helm for ServiceAccount `groot`. Pull secrets belong on this chart (`image.pullSecrets`), not on the trigger Job SA manifest.
+
 ## Scheduled (CronJob)
 
 ```bash

@@ -58,3 +58,10 @@ jobs:
           helm template test-rel "$CHART_DIR" --namespace groot \
             --set persistence.enabled=false | \
             kubeconform -strict -kubernetes-version "${KUBERNETES_VERSION}" -summary -
+
+      - name: helm template + kubeconform (pull secrets + Istio annotation)
+        run: |
+          helm template test-rel "$CHART_DIR" --namespace groot \
+            --set-json 'image.pullSecrets=[{"name":"regcred"}]' \
+            --set-json 'podAnnotations={"sidecar.istio.io/inject":"false"}' | \
+            kubeconform -strict -kubernetes-version "${KUBERNETES_VERSION}" -summary -

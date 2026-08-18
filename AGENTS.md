@@ -6,6 +6,7 @@ This repository documents **how to run GROOT** in operator environments. It is *
 |------|------|
 | **[groot](https://github.com/hrodrig/groot)** | CLI, behavior contract (SPEC), releases, container image build |
 | **groot-selfhosted** (this repo) | Bastion, Docker/Podman, cron/systemd, Helm CronJob, flat Kubernetes manifests |
+| **[groot-trigger](https://github.com/hrodrig/groot-trigger)** | HTTP on-demand → Job. Reuse this chart’s Job SA; skip trigger `job-sa/` |
 
 ## Upstream pin
 
