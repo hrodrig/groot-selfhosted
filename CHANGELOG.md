@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.13] - 2026-08-25
+
+### Changed
+
+- Upstream pin bumped to **v1.1.3** (positional archive naming with cluster anchor). Helm chart **`version:`** **0.1.15**, **`appVersion`** **`v1.1.3`**.
+- Runbooks and chart defaults: Docker, flat manifests, Helm examples, helm-repo landing, and airgapped relay install pin **v1.1.3**.
+
 ## [0.2.12] - 2026-08-18
 
 ### Added

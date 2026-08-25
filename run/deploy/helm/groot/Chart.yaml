@@ -2,8 +2,8 @@ apiVersion: v2
 name: groot
 description: Scheduled in-cluster Kubernetes log collection with GROOT
 type: application
-version: 0.1.14
-appVersion: "v1.1.1"
+version: 0.1.15
+appVersion: "v1.1.3"
 keywords:
   - kubernetes
   - logs

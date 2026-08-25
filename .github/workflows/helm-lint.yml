@@ -46,7 +46,7 @@ jobs:
         run: helm lint "$CHART_DIR"
 
       - name: helm lint (pinned image tag)
-        run: helm lint "$CHART_DIR" --set image.tag=v1.1.1
+        run: helm lint "$CHART_DIR" --set image.tag=v1.1.3
 
       - name: helm template + kubeconform (default values)
         run: |

@@ -21,7 +21,7 @@ helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 If **`helm repo add`** fails, use **From this repository** below until the first chart release completes.
@@ -34,7 +34,7 @@ If **`helm repo add`** fails, use **From this repository** below until the first
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
   --set image.repository=registry.example.com/your-org/groot \
-  --set image.tag=v1.1.1 \
+  --set image.tag=v1.1.3 \
   --set 'image.pullSecrets[0].name=YOUR_PULL_SECRET'
 ```
 
@@ -49,7 +49,7 @@ From a clone of **groot-selfhosted** (repo root):
 ```bash
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 ## Examples
@@ -61,7 +61,7 @@ helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set schedule="0 2 * * *" \
   --set persistence.size=20Gi \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 ### Embed config from file
@@ -70,7 +70,7 @@ helm upgrade --install groot groot/groot \
 helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set-file config.grootYml=./prod-groot.yml \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 Example **`prod-groot.yml`** snippet:
@@ -107,7 +107,7 @@ kubectl -n groot create secret generic groot-s3 \
 helm upgrade --install groot ./run/deploy/helm/groot \
   -n groot --create-namespace \
   --set-file config.grootYml=./prod-groot.yml \
-  --set image.tag=v1.1.1 \
+  --set image.tag=v1.1.3 \
   --set 'extraEnvFrom[0].secretRef.name=groot-s3' \
   --set 'extraArgs[0]=--verbose'
 ```
@@ -132,7 +132,7 @@ Manual Jobs can run in parallel and hammer the API / fill the PVC. HTTP on-deman
 helm upgrade --install groot groot/groot \
   -n groot --create-namespace \
   --set persistence.enabled=false \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 ## Configuration reference
@@ -141,7 +141,7 @@ helm upgrade --install groot groot/groot \
 |-------|---------|---------|
 | `schedule` | `0 */6 * * *` | Cron expression |
 | `image.repository` | `ghcr.io/hrodrig/groot` | Container image (override for air-gapped mirrors) |
-| `image.tag` | Chart `appVersion` (`v1.1.1`) | GHCR tag (**`v`-prefixed**). Bare `1.1.1` is normalized to `v1.1.1`. |
+| `image.tag` | Chart `appVersion` (`v1.1.3`) | GHCR tag (**`v`-prefixed**). Bare `1.1.3` is normalized to `v1.1.3`. |
 | `image.pullSecrets` | `[]` | CronJob pod pull secrets; also copied onto the Job SA unless `serviceAccount.imagePullSecrets` is set |
 | `serviceAccount.imagePullSecrets` | `[]` (→ `image.pullSecrets`) | SA pull secrets so groot-trigger Jobs inherit registry auth |
 | `podAnnotations` | `{}` | Job pod annotations (e.g. `sidecar.istio.io/inject: "false"`) |
