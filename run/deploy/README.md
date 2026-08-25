@@ -21,7 +21,7 @@ helm repo add groot https://hrodrig.github.io/groot-selfhosted
 helm repo update
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 Pin chart semver when needed: **`helm search repo groot -l`** then **`--version <chart-version>`**.
@@ -32,7 +32,7 @@ Embed your config:
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
   --set-file config.grootYml=./groot.yml \
-  --set image.tag=v1.1.1 \
+  --set image.tag=v1.1.3 \
   --set schedule="0 2 * * *"
 ```
 
@@ -42,7 +42,7 @@ helm upgrade --install groot groot/groot \
 # Default: CronJob every 6h, PVC for /out, read-only ClusterRole
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.1.1
+  --set image.tag=v1.1.3
 ```
 
 Example `groot.yml` for in-cluster (notify + redaction):
@@ -128,7 +128,7 @@ kubectl -n groot exec deploy/groot-ondemand -- \
 
 ```bash
 kubectl -n groot logs job/groot-manual-test | tail
-# Or exec into a debug pod with the same ServiceAccount and image tag v1.1.1
+# Or exec into a debug pod with the same ServiceAccount and image tag v1.1.3
 ```
 
 After a successful collect, inspect an archive without cluster access:

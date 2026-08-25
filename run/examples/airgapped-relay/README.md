@@ -77,7 +77,7 @@ Whenever a `.tar.gz` lands in `~/inbox/`, the oneshot runs `rclone move` to `$RC
 brew install hrodrig/groot/groot
 
 # Linux (deb)
-curl -sL https://github.com/hrodrig/groot/releases/download/v1.1.1/groot_v1.1.1_linux_amd64.deb -o /tmp/groot.deb
+curl -sL https://github.com/hrodrig/groot/releases/download/v1.1.3/groot_v1.1.3_linux_amd64.deb -o /tmp/groot.deb
 sudo dpkg -i /tmp/groot.deb
 ```
 
