@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.14] - 2026-09-28
+
 ### Changed
 
 - Upstream pin bumped to **v1.1.4** (security: grpc / x/crypto / otel). Helm chart **`version:`** **0.1.16**, **`appVersion`** **`v1.1.4`**.
