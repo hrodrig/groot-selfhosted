@@ -21,3 +21,6 @@
 
 !run/
 !run/**
+
+!assets/
+!assets/**

@@ -9,6 +9,8 @@ Self-contained YAML for namespace **`groot`**. Config lives in a **ConfigMap** i
 | [`ondemand-deployment.yaml`](ondemand-deployment.yaml) | **Deployment** (pod stays up) | Run `groot collect` only when you decide (`kubectl exec`) |
 | [`cronjob.yaml`](cronjob.yaml) | **CronJob** (scheduled) | Automatic collection every N hours |
 
+No egress from the cluster: mirror the image first and edit `image:` before apply. The on-demand Deployment also downloads a GitHub release tarball at start, so a locked cluster should use the CronJob or the Helm chart. Steps: [private-registry.md](../private-registry.md).
+
 Do **not** apply both CronJob and on-demand Deployment if you only want one mode. Shared resources (namespace, RBAC, ConfigMap, PVC) are compatible; delete the CronJob if you switch:
 
 ```bash

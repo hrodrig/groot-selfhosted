@@ -17,6 +17,7 @@ This tree holds **how to run GROOT**, not the CLI source. Product docs: [groot](
 |-----------|------------|
 | kubeconfig on a laptop / bastion | [docker/README.md](docker/README.md) |
 | Kubernetes + Helm 3 | [deploy/README.md](deploy/README.md) — **`helm repo add groot https://hrodrig.github.io/groot-selfhosted`** |
+| Kubernetes, no egress | [deploy/private-registry.md](deploy/private-registry.md) — mirror chart and image, then install from your registry |
 | Kubernetes, HTTP **on demand** (Job) | **[groot-trigger](https://github.com/hrodrig/groot-trigger)** — apply `deploy/k8s/always/` only if this Helm chart already created the Job SA |
 | Kubernetes, collect **on demand** (`kubectl exec`) | [deploy/k8s/ondemand-deployment.yaml](deploy/k8s/ondemand-deployment.yaml) |
 | Kubernetes, **scheduled** collection, no Helm | [deploy/k8s/cronjob.yaml](deploy/k8s/cronjob.yaml) |

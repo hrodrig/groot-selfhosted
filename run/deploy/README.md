@@ -11,6 +11,7 @@ Scheduled **`groot collect`** inside Kubernetes using the published image **`ghc
 | **HTTP on-demand** | **[groot-trigger](https://github.com/hrodrig/groot-trigger)** (`deploy/k8s/always/` if this Helm release already exists) | Browser / API → Job; skip trigger `job-sa/` |
 | **On-demand Deployment** | [`k8s/ondemand-deployment.yaml`](k8s/ondemand-deployment.yaml) | Long-lived pod; `kubectl exec` to collect |
 | **Flat CronJob YAML** | [`k8s/cronjob.yaml`](k8s/cronjob.yaml) | Scheduled collection without Helm |
+| **No egress** | [private-registry.md](private-registry.md) | Mirror chart and image, then install from your registry |
 
 **Helm repo:** once [**Release Charts**](https://github.com/hrodrig/groot-selfhosted/blob/main/.github/workflows/release-charts.yml) has published **`index.yaml`**, install with **`groot/groot`** (repo/chart). Until then, use **From this repository** below.
 
