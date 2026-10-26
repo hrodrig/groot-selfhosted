@@ -5,7 +5,7 @@
 #
 # Usage:
 #   docker login my-private.azcr.io
-#   ./mirror-groot-image.sh ghcr.io/hrodrig/groot:v1.2.0 my-private.azcr.io/customer/groot
+#   ./mirror-groot-image.sh ghcr.io/hrodrig/groot:v1.2.1 my-private.azcr.io/customer/groot
 #
 # Optional: DOCKER_PLATFORM=linux/amd64 when the laptop arch is not the node arch.
 # Pulls one platform. It does not copy a multi-arch index.

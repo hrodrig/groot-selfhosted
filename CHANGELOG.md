@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upstream pin bumped to **v1.2.1** (Go **1.27.3**; **CVE-2026-111943** / **GO-2026-6809**). Helm chart **`version:`** **0.1.18**, **`appVersion`** **`v1.2.1`**.
+- Runbooks and chart defaults: Docker, flat manifests, Helm examples, helm-repo landing, airgapped relay, private-registry how-to, and on-demand `GROOT_VERSION` pin **v1.2.1**.
+
 ### Added
 
 - Private-registry how-to [run/deploy/private-registry.md](run/deploy/private-registry.md) and `mirror-groot-image.sh`. A host with egress copies the chart and the collector image; the locked cluster installs from that registry. The script pushes the upstream tag and `sha256-<hex>`. The root README and the Helm section link the how-to.
