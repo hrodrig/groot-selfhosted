@@ -2,7 +2,7 @@
 
 # groot-selfhosted — run GROOT in your environment
 
-[![Version](https://img.shields.io/badge/version-0.2.15-blue)](./VERSION)
+[![Version](https://img.shields.io/badge/version-0.2.16-blue)](./VERSION)
 [![Release](https://img.shields.io/github/v/release/hrodrig/groot-selfhosted?label=release)](https://github.com/hrodrig/groot-selfhosted/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![App image on GHCR](https://img.shields.io/badge/image-ghcr.io%2Fhrodrig%2Fgroot-2496ED?logo=github)](https://github.com/hrodrig/groot/pkgs/container/groot)
@@ -26,7 +26,7 @@ GROOT is a **read-only Kubernetes log collector**. This repository holds **opera
 | In-cluster CronJob and bastion `docker run` | Collect / validate / inspect — [SPECIFICATIONS.md](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md) |
 | Private-registry mirror steps | Image publish — [groot Releases](https://github.com/hrodrig/groot/releases) |
 
-**Upstream pin:** `ghcr.io/hrodrig/groot:v1.2.0` · [SPEC](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md) · [sample config](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)
+**Upstream pin:** `ghcr.io/hrodrig/groot:v1.2.1` · [SPEC](https://github.com/hrodrig/groot/blob/main/SPECIFICATIONS.md) · [sample config](https://github.com/hrodrig/groot/blob/main/configs/groot.yml.sample)
 
 **Related tools (same maintainer):**
 - **[pgwd](https://github.com/hrodrig/pgwd)** — PostgreSQL connection watchdog ([live traffic](https://gghstats.hermesrodriguez.com/hrodrig/pgwd); deploy: [pgwd-selfhosted](https://github.com/hrodrig/pgwd-selfhosted))
@@ -77,7 +77,7 @@ helm repo update
 helm search repo groot -l
 helm upgrade --install groot groot/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.2.0
+  --set image.tag=v1.2.1
 ```
 
 Use **`--version`** from **`helm search`**. If **`helm repo add`** fails, use the clone path below.
@@ -89,7 +89,7 @@ git clone https://github.com/hrodrig/groot-selfhosted.git
 cd groot-selfhosted
 helm upgrade --install groot ./run/deploy/helm/groot \
   --namespace groot --create-namespace \
-  --set image.tag=v1.2.0
+  --set image.tag=v1.2.1
 ```
 
 See [run/deploy/README.md](run/deploy/README.md) for custom config, PVC, and RBAC notes.
@@ -107,7 +107,7 @@ To install from a private registry, mirror the chart and the image first, then p
 | Root **`VERSION`** | This operator repo (tags `v…` on `main`). Not the groot CLI version. |
 | Helm **`Chart.yaml` `version:`** | Chart package (`groot-<chart-version>.tgz` on [Pages](https://hrodrig.github.io/groot-selfhosted/index.yaml)). Bump only when `run/deploy/helm/groot/` changes. May lag **`VERSION`**. |
 | Helm **`appVersion`** | **groot** image line. Empty `image.tag` uses this value. |
-| Docs / `image.tag` | Published GHCR tag. Current pin: **`ghcr.io/hrodrig/groot:v1.2.0`**. Bare `:1.2.0` is not published. |
+| Docs / `image.tag` | Published GHCR tag. Current pin: **`ghcr.io/hrodrig/groot:v1.2.1`**. Bare `:1.2.1` is not published. |
 
 **[↑ Contents](#table-of-contents)**
 
