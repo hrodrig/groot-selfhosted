@@ -23,6 +23,7 @@ GROOT is a **read-only Kubernetes log collector**. This repository holds **opera
 | **On-demand Deployment** | [run/deploy/k8s/ondemand-deployment.yaml](run/deploy/k8s/ondemand-deployment.yaml) | Pod in `groot` namespace; `kubectl exec` to collect |
 | **Flat CronJob YAML** | [run/deploy/k8s/cronjob.yaml](run/deploy/k8s/cronjob.yaml) | Scheduled collection without Helm |
 | **cron / systemd** (standalone binary) | [run/standalone/README.md](run/standalone/README.md) | Host scheduler + Releases binary |
+| **Kubernetes, no egress** | [run/deploy/private-registry.md](run/deploy/private-registry.md) | Mirror the chart and image, then install from your registry |
 | **Example configs** | [run/examples/](run/examples/) | Minimal operator YAML |
 
 Start at **[run/README.md](run/README.md)** for the full index.
@@ -55,6 +56,8 @@ helm upgrade --install groot ./run/deploy/helm/groot \
 ```
 
 See [run/deploy/README.md](run/deploy/README.md) for custom config, PVC, and RBAC notes.
+
+To install from a private registry, mirror the chart and the image first, then point Helm at that registry. Steps: [private-registry.md](run/deploy/private-registry.md).
 
 ## Contributing
 

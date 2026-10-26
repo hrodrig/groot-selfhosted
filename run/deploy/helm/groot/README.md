@@ -28,6 +28,8 @@ If **`helm repo add`** fails, use **From this repository** below until the first
 
 ### Air-gapped / private registry
 
+Mirror the chart and the image first. Full steps: [private-registry.md](../../private-registry.md).
+
 `--set image.tag` still pulls **`ghcr.io/hrodrig/groot`** unless you override **`image.repository`**. Put **`image.pullSecrets`** on the chart so the CronJob **and** the Job ServiceAccount can pull (groot-trigger Jobs reuse that SA):
 
 ```bash

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Private-registry how-to [run/deploy/private-registry.md](run/deploy/private-registry.md) and `mirror-groot-image.sh`. A host with egress copies the chart and the collector image; the locked cluster installs from that registry. The script pushes the upstream tag and `sha256-<hex>`. The root README and the Helm section link the how-to.
+
 ## [0.2.15] - 2026-10-10
 
 ### Changed
