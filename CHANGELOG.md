@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.17] - 2026-11-08
+
 ### Changed
 
 - Upstream pin bumped to **v1.3.1** (Slack notify text dedupe; k8s client **0.37.2**; compress **1.20.2**). Helm chart **`version:`** **0.1.19**, **`appVersion`** **`v1.3.1`**.
