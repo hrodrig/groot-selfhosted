@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **SECURITY.md:** host/kernel note for **CVE-2026-98432** (MPTCP listen PoC). GROOT collect has no prod listener; operators still patch bastion/node kernels ([groot#55](https://github.com/hrodrig/groot/issues/55)).
+
 ### Fixed
 
 - **CI:** run Helm `validate` on every PR/push to `develop`/`main` (drop path filters) so ruleset required check `validate` is not missing on docs-only PRs.
