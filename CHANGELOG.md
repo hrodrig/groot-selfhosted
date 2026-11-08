@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upstream pin bumped to **v1.3.1** (Slack notify text dedupe; k8s client **0.37.2**; compress **1.20.2**). Helm chart **`version:`** **0.1.19**, **`appVersion`** **`v1.3.1`**.
+- Runbooks and chart defaults: Docker, flat manifests, Helm examples, helm-repo landing, airgapped relay, private-registry how-to, and on-demand `GROOT_VERSION` pin **v1.3.1**.
+
 ### Added
 
 - **SECURITY.md:** host/kernel note for **CVE-2026-98432** (MPTCP listen PoC). GROOT collect has no prod listener; operators still patch bastion/node kernels ([groot#55](https://github.com/hrodrig/groot/issues/55)).
