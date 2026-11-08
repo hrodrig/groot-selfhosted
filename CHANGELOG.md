@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.17] - 2026-11-08
+
+### Changed
+
+- Upstream pin bumped to **v1.3.1** (Slack notify text dedupe; k8s client **0.37.2**; compress **1.20.2**). Helm chart **`version:`** **0.1.19**, **`appVersion`** **`v1.3.1`**.
+- Runbooks and chart defaults: Docker, flat manifests, Helm examples, helm-repo landing, airgapped relay, private-registry how-to, and on-demand `GROOT_VERSION` pin **v1.3.1**.
+
+### Added
+
+- **SECURITY.md:** host/kernel note for **CVE-2026-98432** (MPTCP listen PoC). GROOT collect has no prod listener; operators still patch bastion/node kernels ([groot#55](https://github.com/hrodrig/groot/issues/55)).
+
+### Fixed
+
+- **CI:** run Helm `validate` on every PR/push to `develop`/`main` (drop path filters) so ruleset required check `validate` is not missing on docs-only PRs.
+
 ## [0.2.16] - 2026-10-25
 
 ### Changed

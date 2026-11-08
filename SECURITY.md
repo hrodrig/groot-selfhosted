@@ -12,6 +12,16 @@ This repository holds **operator** material for GROOT: Helm chart, Kubernetes ma
 
 Collected archives may contain cluster secrets. Treat PVC mounts, output volumes, and webhook URLs as sensitive — see [groot README → Security note](https://github.com/hrodrig/groot#security-note).
 
+## Host / kernel notes
+
+Operators own the **bastion, CronJob nodes, and worker kernels**. Keep Linux hosts patched.
+
+**[CVE-2026-98432](https://nvd.nist.gov/vuln/detail/CVE-2026-98432)** (Linux IPv4 TCP UAF; public PoCs abuse MPTCP listeners):
+
+- The GROOT CLI / CronJob image has **no production listen socket** — see [groot#55](https://github.com/hrodrig/groot/issues/55). App-level MPTCP listen mitigations are **not** required for typical `groot collect` deployments.
+- Still patch the **host kernel** (and any other Go listeners on the same machine). That is the primary fix ([Go announce](https://groups.google.com/g/golang-announce/c/PCoQcdxoScw)).
+- If you later run a long-lived HTTP surface on these hosts (e.g. [groot-trigger](https://github.com/hrodrig/groot-trigger)), keep hosts current and follow that project’s listener guidance.
+
 ## Supported versions
 
 We support the **latest release** tagged on **`main`** of this repo (manifests and docs), used with a current **[groot](https://github.com/hrodrig/groot/releases)** release. Versions follow [semantic versioning](https://semver.org/) (MAJOR.MINOR.PATCH).
