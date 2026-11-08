@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **CI:** run Helm `validate` on every PR/push to `develop`/`main` (drop path filters) so ruleset required check `validate` is not missing on docs-only PRs.
+
 ## [0.2.16] - 2026-10-25
 
 ### Changed
