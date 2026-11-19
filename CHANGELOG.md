@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.18] - 2026-11-19
+
+### Changed
+
+- Upstream pin bumped to **v1.3.2** (Go **1.27.4** / **GO-2026-6859**; AWS SDK + `x/crypto` / `x/sys` / `pflag` / `sftp` / `google.golang.org/api` refresh). Helm chart **`version:`** **0.1.20**, **`appVersion`** **`v1.3.2`**.
+- Runbooks and chart defaults: Docker, flat manifests, Helm examples, helm-repo landing, airgapped relay, private-registry how-to, and on-demand `GROOT_VERSION` pin **v1.3.2**.
+
 ## [0.2.17] - 2026-11-08
 
 ### Changed
